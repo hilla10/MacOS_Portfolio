@@ -1,0 +1,37 @@
+language: auto
+mode: pr_review
+
+review:
+  high_level_summary: true
+  code_suggestions: true
+  security_analysis: true
+  performance_analysis: true
+  request_changes: true
+  improved_tests: true
+  readme_improvements: true
+
+activation:
+  on_pull_request: true
+  on_push: false
+
+labels:
+  auto_review: true
+
+# Exclude files/folders from review
+exclude:
+  - "dist/**"
+  - "build/**"
+  - "node_modules/**"
+  - "*.min.js"
+  - "*.lock"
+  - "vendor/**"
+
+# Optional: Customize how detailed reviews should be
+detail:
+  level: medium
+  inline_comments: true
+
+# Optional: Customize tone of the review
+tone:
+  style: friendly
+  thoroughness: balanced
