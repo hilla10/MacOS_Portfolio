@@ -24,6 +24,13 @@ const setupTextHover = (container, type) => {
   const letters = container.querySelectorAll('span');
   const { min, max, default: base } = FONT_WEIGHTS[type];
 
+  // Cache letter positions and bounding data
+  const letterData = Array.from(letters).map((letter) => ({
+    element: letter,
+    rect: letter.getBoundingClientRect(),
+  }));
+  const containerLeft = container.getBoundingClientRect().left;
+
   const animateLetter = (letter, weight, duration = 0.25) => {
     return gsap.to(letter, {
       duration,
@@ -32,15 +39,15 @@ const setupTextHover = (container, type) => {
     });
   };
   const handleMouseMove = (e) => {
-    const { left } = container.getBoundingClientRect();
-    const mouseX = e.clientX - left;
+    const mouseX = e.clientX - containerLeft;
 
-    letters.forEach((letter) => {
-      const { left: l, width: w } = letter.getBoundingClientRect();
-      const distance = Math.abs(mouseX - (l - left + w / 2));
+    letterData.forEach(({ element, rect }) => {
+      const distance = Math.abs(
+        mouseX - (rect.left - containerLeft + rect.width / 2)
+      );
       const intensity = Math.exp(-(distance ** 2) / 2000);
 
-      animateLetter(letter, min + (max - min) * intensity);
+      animateLetter(element, min + (max - min) * intensity);
     });
   };
 
