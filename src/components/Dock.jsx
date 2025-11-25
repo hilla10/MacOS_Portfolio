@@ -67,12 +67,12 @@ const Dock = () => {
               aria-label={name}
               data-tooltip-id='dock-tooltip'
               data-tooltip-content={name}
-              data-delay-show={150}
+              data-tooltip-delay-show={150}
               disabled={!canOpen}
               onClick={() => toggleApp({ id, canOpen })}>
               <img
                 src={`/images/${icon}`}
-                alt='icon'
+                alt={name}
                 loading='lazy'
                 className={canOpen ? '' : 'opacity-60'}
               />
