@@ -1,4 +1,4 @@
-language: auto
+language: en-US
 mode: pr_review
 
 review:
@@ -19,12 +19,12 @@ labels:
 
 # Exclude files/folders from review
 exclude:
-  - "dist/**"
-  - "build/**"
-  - "node_modules/**"
-  - "*.min.js"
-  - "*.lock"
-  - "vendor/**"
+  - 'dist/**'
+  - 'build/**'
+  - 'node_modules/**'
+  - '*.min.js'
+  - '*.lock'
+  - 'vendor/**'
 
 # Optional: Customize how detailed reviews should be
 detail:
