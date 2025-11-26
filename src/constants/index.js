@@ -328,6 +328,8 @@ const WORK_LOCATION = {
       ],
     },
 
+    // TODO: CHANGE THE PROJECT
+
     // ▶ Project 3
     {
       id: 7,
