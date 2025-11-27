@@ -6,6 +6,7 @@ import { Dock, Home, Navbar, Welcome } from '@components';
 import {
   Contact,
   Finder,
+  Gallery,
   Image,
   Resume,
   Safari,
@@ -27,6 +28,7 @@ const App = () => {
       <Image />
       <Contact />
       <Home />
+      <Gallery />
     </main>
   );
 };
