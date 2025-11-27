@@ -1,21 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 html,
 body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
-  background-image: url("/images/wallpaper.png");
+  background-image: url('/images/wallpaper.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 @theme {
-  --font-georama: "Georama", sans-serif;
-  --font-roboto: "Roboto Mono", monospace;
+  --font-georama: 'Georama', sans-serif;
+  --font-roboto: 'Roboto Mono', monospace;
   --breakpoint-3xl: 1920px;
 }
 
@@ -79,22 +79,26 @@ body {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-2000 select-none max-sm:hidden;
 
     .dock-container {
       @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
     }
 
     .tooltip {
-      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+      @apply py-1! px-3! w-fit! text-center! text-xs! rounded-md! bg-blue-200! text-blue-900! shadow-2xl!;
     }
 
     .dock-icon {
-      @apply size-14 3xl:size-20 cursor-pointer;
+      @apply size-14 3xl:size-20 cursor-pointer mb-0.5;
 
       img {
         @apply object-cover object-center;
       }
+    }
+
+    .dock-active {
+      @apply h-1 w-1 rounded-full bg-white absolute bottom-0 left-1/2 -translate-x-1/2;
     }
   }
 
@@ -106,11 +110,11 @@ body {
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer;
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer;
     }
   }
 

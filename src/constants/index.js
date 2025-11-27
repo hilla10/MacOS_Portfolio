@@ -495,14 +495,70 @@ export const locations = {
 const INITIAL_Z_INDEX = 1000;
 
 const WINDOW_CONFIG = {
-  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  finder: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 }, // default dummy value
+  },
+  contact: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
+  resume: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
+  safari: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
+  photos: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
+  terminal: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
+  txtfile: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
+  imgfile: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+    dockPosition: { x: 0, y: 0 },
+  },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };

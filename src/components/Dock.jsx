@@ -65,36 +65,46 @@ const Dock = () => {
       console.error(`Window not found for app: ${app.id}`);
       return;
     }
-  
+
     if (windowState.isOpen) {
       closeWindow(app.id);
     } else {
       openWindow(app.id);
     }
   };
+
   return (
-    <section id='dock'>
-      <div ref={dockRef} className='dock-container'>
-        {dockApps.map(({ id, name, icon, canOpen }) => (
-          <div key={id ?? name} className='relative flex justify-center'>
-            <button
-              type='button'
-              className='dock-icon'
-              aria-label={name}
-              data-tooltip-id='dock-tooltip'
-              data-tooltip-content={name}
-              data-delay-show={150}
-              disabled={!canOpen}
-              onClick={() => toggleApp({ id, canOpen })}>
-              <img
-                src={`/images/${icon}`}
-                alt='icon'
-                loading='lazy'
-                className={canOpen ? '' : 'opacity-60'}
-              />
-            </button>
-          </div>
-        ))}
+    <section id='dock' ref={dockRef}>
+      <div className='dock-container'>
+        {dockApps.map(({ id, name, icon, canOpen }) => {
+          const isAppOpen = windows[id]?.isOpen;
+          const isMinimize = windows[id]?.minimize;
+
+          return (
+            <div key={id ?? name} className='relative flex justify-center'>
+              <button
+                type='button'
+                className='dock-icon'
+                aria-label={name}
+                data-tooltip-id='dock-tooltip'
+                data-tooltip-content={name}
+                data-delay-show={150}
+                disabled={!canOpen}
+                onClick={() => toggleApp({ id, canOpen })}>
+                <img
+                  src={`/images/${icon}`}
+                  alt='icon'
+                  loading='lazy'
+                  className={canOpen ? '' : 'opacity-60'}
+                />
+              </button>
+
+              {(isAppOpen || isMinimize) && (
+                <span className='dock-active' aria-hidden='true' />
+              )}
+            </div>
+          );
+        })}
         <Tooltip id='dock-tooltip' place='top' className='tooltip' />
       </div>
     </section>
