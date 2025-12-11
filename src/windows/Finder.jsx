@@ -47,10 +47,12 @@ const Finder = () => {
       <div id='window-header'>
         <WindowController target='finder' />
 
-        <Search className='icon' />
+        <div className='dark:bg-[#1e1e1e] dark:text-white'>
+          <Search className='icon' />
+        </div>
       </div>
 
-      <div className='bg-white flex h-full'>
+      <div className='bg-white flex h-full dark:bg-[#333237] dark:text-white'>
         <div className='sidebar'>
           {renderList('Favorites', Object.values(locations))}
           {renderList('Work', locations.work.children)}
@@ -62,7 +64,7 @@ const Finder = () => {
               className={item.position}
               onClick={() => openItem(item)}>
               <img src={item.icon} alt={item.name} />
-              {item.name}
+              <p>{item.name}</p>
             </li>
           ))}
         </ul>

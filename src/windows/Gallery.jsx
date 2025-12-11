@@ -9,13 +9,13 @@ const Gallery = () => {
     <>
       <div id='window-header'>
         <WindowController target='photos' />
-        <div className='ml-22 flex flex-1'>
+        <div className='ml-5 flex flex-1'>
           <Mail className='icon ' />
         </div>
         <Search className='icon' />
       </div>
 
-      <div className='bg-white flex h-full'>
+      <div className='bg-white dark:bg-[#333237] flex h-full'>
         <div className='sidebar'>
           <div>
             <h2>Photos</h2>

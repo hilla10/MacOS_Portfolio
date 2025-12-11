@@ -11,7 +11,6 @@ const WindowWrapper = (Component, windowKey) => {
 
     const { isOpen, zIndex, maximize } = windows[windowKey];
     const ref = useRef(null);
-    console.log(windows[windowKey]);
     useGSAP(() => {
       const el = ref.current;
       if (!el || !isOpen) return;
@@ -44,6 +43,7 @@ const WindowWrapper = (Component, windowKey) => {
 
     return (
       <section
+       
         id={windowKey}
         ref={ref}
         style={{ zIndex }}

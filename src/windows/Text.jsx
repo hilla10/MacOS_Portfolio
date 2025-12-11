@@ -17,7 +17,7 @@ const Text = () => {
         <h2>{name}</h2>
       </div>
 
-      <div className='p-5 space-y-6 bg-white'>
+      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e]'>
         {image || imageUrl ? (
           <div className='w-full'>
             <img
@@ -29,13 +29,13 @@ const Text = () => {
         ) : null}
 
         {subtitle ? (
-          <h3 className='text-lg font-semibold'>{subtitle}</h3>
+          <h3 className='text-lg font-semibold dark:text-white'>{subtitle}</h3>
         ) : null}
 
         <div className=' space-y-4'>
           {Array.isArray(description) &&
             description.map((p, i) => (
-              <p key={i} className='text-sm'>
+              <p key={i} className='text-base dark:text-white'>
                 {p}
               </p>
             ))}

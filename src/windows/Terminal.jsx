@@ -14,11 +14,11 @@ const Terminal = () => {
 
       <div className='techstack'>
         <p>
-          <span className='font-bold'>@Hailemichael % </span>
+          <span className='font-bold '>@Hailemichael % </span>
           show tech stack
         </p>
 
-        <div className='label'>
+        <div className='label dark:text-white'>
           <p className='w-32'>Category</p>
           <p>Technologies</p>
         </div>
@@ -42,13 +42,16 @@ const Terminal = () => {
         </ul>
 
         <div className='footnote'>
-          <p>
+          <p className='dark:text-[#00A154]'>
             <Check size={20} /> 5 of 5 stack loaded successfully (100%)
           </p>
 
-          <p className='text-black'>
-            <Flag size={15} fill='black' />
+          <p className='text-black dark:text-white'>
+            <Flag size={15} className='fill-black dark:fill-white' />
             Render time: 6ms
+          </p>
+          <p className='text-black dark:text-white pt-6'>
+            @Haila % github stats
           </p>
         </div>
       </div>

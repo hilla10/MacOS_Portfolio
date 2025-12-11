@@ -7,21 +7,23 @@ const Contact = () => {
     <>
       <div id='window-header'>
         <WindowController target='contact' />
-        <h2>Contact Me</h2>
+        <h2 className='dark:text-white'>Contact Me</h2>
       </div>
 
       <div className='p-5 space-y-5'>
         <img
-          src='/images/adrian.jpg'
+          src='/images/haila.png'
           alt='Hailemichael'
           className='w-20 rounded-full'
         />
 
-        <h3>Let's Connect</h3>
-        {/* TODO: Random Quote */}
-        <p>Got an idea? A bug to squash? Or just wanna talk tech? I'm in.</p>
+        <h3 className='dark:text-white'>Let's Connect</h3>
 
-        <p>hillaman592@gmail.com</p>
+        <p className='dark:text-white'>
+          Got an idea? A bug to squash? Or just wanna talk tech? I'm in.
+        </p>
+
+        <p className='dark:text-white'>hillaman592@gmail.com</p>
 
         <ul>
           {socials.map(({ id, bg, link, icon, text }) => (
@@ -32,7 +34,7 @@ const Contact = () => {
                 rel='noopener noreferrer'
                 title={text}>
                 <img src={icon} alt={text} className='size-5' />
-                <p>{text}</p>
+                <p className='dark:text-white'>{text}</p>
               </a>
             </li>
           ))}
