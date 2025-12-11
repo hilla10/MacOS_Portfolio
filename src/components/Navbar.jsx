@@ -84,7 +84,7 @@ const Navbar = () => {
                 )}
                 onClick={() => setThemeAndWallpaper('light')}>
                 Light Mode
-                {theme === 'light' && <Check className='size-5 ' />}
+                {theme === 'light' && <Check className='size-5' />}
               </p>
 
               <p
@@ -92,7 +92,7 @@ const Navbar = () => {
                   theme === 'dark' && 'flex-between bg-[#007AFF] text-white'
                 )}
                 onClick={() => setThemeAndWallpaper('dark')}>
-                Dark Mode {theme === 'dark' && <Check className='size-5 ' />}
+                Dark Mode {theme === 'dark' && <Check className='size-5' />}
               </p>
             </div>
           </li>

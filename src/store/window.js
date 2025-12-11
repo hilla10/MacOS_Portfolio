@@ -2,26 +2,17 @@ import { INITIAL_Z_INDEX, WINDOW_CONFIG } from '@constants';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-let initialTheme = 'light';
-let initialWallpaper = '/images/wallpaper-light.png';
-try {
-  if (typeof window !== 'undefined' && window.localStorage) {
-    const t = window.localStorage.getItem('theme');
-    const w = window.localStorage.getItem('wallpaper');
-    if (t) initialTheme = t;
-    if (w) initialWallpaper = w;
-  }
-} catch {
-  // Ignore and keep defaults
-}
+// Do NOT access `window`/`localStorage` at module evaluation time — keep
+// safe defaults here to avoid SSR/hydration mismatches. Client-side
+// rehydration can be performed after mount (see `rehydrateWindowStoreFromLocalStorage`).
 
 const useWindowStore = create(
   immer((set) => ({
     windows: WINDOW_CONFIG,
     nextZIndex: INITIAL_Z_INDEX + 1,
-    theme: initialTheme,
+    theme: 'light',
     isClicked: false,
-    wallpaper: initialWallpaper,
+    wallpaper: '/images/wallpaper-light.png',
 
     openWindow: (windowKey, data = null) =>
       set((state) => {
@@ -123,3 +114,20 @@ const useWindowStore = create(
   }))
 );
 export default useWindowStore;
+
+// Client-only helper: call this from a top-level client effect (e.g. in App.jsx
+// inside useEffect) to populate the store from localStorage after hydration.
+export const rehydrateWindowStoreFromLocalStorage = () => {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const t = window.localStorage.getItem('theme');
+    const w = window.localStorage.getItem('wallpaper');
+    const state = useWindowStore.getState();
+
+    if (t) state.toggleTheme(t);
+    if (w) state.changeWallpaper(w);
+  } catch {
+    // ignore any storage errors
+  }
+};

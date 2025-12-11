@@ -1,7 +1,9 @@
 import gsap from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 gsap.registerPlugin(Draggable);
-import useWindowStore from '@store/window';
+import useWindowStore, {
+  rehydrateWindowStoreFromLocalStorage,
+} from '@store/window';
 import { useEffect } from 'react';
 
 import { Dock, Home, Navbar, Welcome } from '@components';
@@ -21,6 +23,14 @@ const App = () => {
   const { toggleTheme, changeWallpaper, isClicked, closeDropdown } =
     useWindowStore();
 
+  useEffect(() => {
+    // Populate store from persisted client storage after hydration
+    try {
+      rehydrateWindowStoreFromLocalStorage();
+    } catch (error) {
+      console.error('Failed to rehydrate store from localStorage:', error);
+    }
+  }, []);
   useEffect(() => {
     const isDark =
       localStorage.theme === 'dark' ||

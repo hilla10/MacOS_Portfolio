@@ -21,7 +21,6 @@ const Wallpaper = () => {
               }}
               className='border-0 p-0 bg-transparent'
               aria-label={`Select wallpaper ${id}`}>
-              {' '}
               <img
                 src={img}
                 alt={`wallpaper-${id}`}
