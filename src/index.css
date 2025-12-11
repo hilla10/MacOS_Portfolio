@@ -73,7 +73,9 @@ body {
       left-[calc(50%-14.025px)]
       -top-2
       bg-[#a3ade8]
+      dark:bg-[#222433]
       border-[0.5px] border-[rgba(0,0,0,0.06)]
+      dark:border-[rgba(255,255,255,0.1)]
       shadow-[0px_2px_4px_rgba(0,0,0,0.15),0px_8px_15px_rgba(0,0,0,0.18),inset_0px_0.5px_1px_rgba(255,255,255,0.5)]
       backdrop-blur-[40.7742px]
       z-10
@@ -81,10 +83,10 @@ body {
       scale-y-[-1];
       }
       .card {
-        @apply w-[170px] h-[78px] bg-[#a3ade8] flex flex-col items-start  px-2 gap-2 rounded-lg z-100;
+        @apply w-[170px] h-[78px] bg-[#a3ade8] dark:bg-[#222433] flex flex-col items-start  px-2 gap-2 rounded-lg z-100;
 
         p {
-          @apply text-black/85 text-[13px] leading-4 px-2.5 py-2 font-bold w-[158px] h-7.5 rounded-sm;
+          @apply text-black/85 dark:text-white text-[13px] leading-4 px-2.5 py-2 font-bold w-[158px] h-7.5 rounded-sm;
         }
       }
     }

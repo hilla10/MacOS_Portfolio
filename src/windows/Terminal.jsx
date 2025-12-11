@@ -42,10 +42,9 @@ const Terminal = () => {
         </ul>
 
         <div className='footnote'>
-          <p className='dark:text-[#00A154]'>
+          <p className='text-[#00A154] dark:text-[#00A154]'>
             <Check size={20} /> 5 of 5 stack loaded successfully (100%)
           </p>
-
           <p className='text-black dark:text-white'>
             <Flag size={15} className='fill-black dark:fill-white' />
             Render time: 6ms

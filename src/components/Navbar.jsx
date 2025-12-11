@@ -15,17 +15,29 @@ const Navbar = () => {
   } = useWindowStore();
 
   const setThemeAndWallpaper = (newTheme) => {
+    // Always toggle the theme first so UI updates immediately
+    toggleTheme(newTheme);
+
     const filtered = wallpapers.filter((w) => w.mode === newTheme);
 
     if (filtered.length > 0) {
       const random = filtered[Math.floor(Math.random() * filtered.length)];
-
-      // 2. Switch theme
-      toggleTheme(newTheme);
-
-      // 3. Apply wallpaper
+      // Apply a randomly selected wallpaper matching the theme
       changeWallpaper(random.img);
+      return;
     }
+
+    // No matching wallpapers found — use a sensible fallback per theme
+    const FALLBACKS = {
+      light: '/images/wallpaper-light.png',
+      dark: '/images/wallpaper-dark.png',
+    };
+
+    const fallback = FALLBACKS[newTheme] || FALLBACKS.light;
+    console.warn(
+      `[Navbar] No wallpapers found for theme "${newTheme}" — applying fallback: ${fallback}`
+    );
+    changeWallpaper(fallback);
   };
 
   return (
@@ -59,7 +71,7 @@ const Navbar = () => {
             </li>
           ))}
 
-          <div
+          <li
             id='dropdown'
             className='dropdown'
             style={{ display: isClicked ? 'flex' : 'none' }}>
@@ -83,7 +95,7 @@ const Navbar = () => {
                 Dark Mode {theme === 'dark' && <Check className='size-5 ' />}
               </p>
             </div>
-          </div>
+          </li>
         </ul>
 
         <time>{dayjs().format('dd MMM D h:mm A')}</time>
