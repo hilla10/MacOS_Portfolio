@@ -107,7 +107,7 @@ const Finder = () => {
           {renderList('Work', locations.work.children)}
         </div>
         <ul className='content'>
-          {(filtered ? filtered.children : filteredItems).map((item) => (
+          {(filtered ? filtered.children : filteredItems)?.map((item) => (
             <li
               key={item.id}
               className={item.position}

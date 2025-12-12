@@ -11,23 +11,28 @@ const useLocationStore = create(
     filtered: null,
     isProjectFound: true,
 
-    setActiveLocation: (location = null) =>
+    setActiveLocation: (location) =>
       set((state) => {
-        if (location === undefined) return;
+        if (location == null) return;
         state.activeLocation = location;
       }),
-
     resetActiveLocation: () =>
       set((state) => {
-        if (location === undefined) return;
         state.activeLocation = DEFAULT_LOCATION;
       }),
-
     search: (e, input, activeLocation) => {
       set((state) => {
         if (e.key !== 'Enter') return;
 
         if (!input.trim()) return;
+
+        state.searchInput = input;
+
+        if (!activeLocation?.children) {
+          state.isProjectFound = false;
+          return;
+        }
+
         // Access the root "Work" folder children
         const workItems = activeLocation.children;
 
@@ -44,11 +49,10 @@ const useLocationStore = create(
         state.isProjectFound = true;
       });
     },
-
     resetSearch: () => {
       set((state) => {
+        state.searchInput = '';
         state.filtered = null;
-
         state.isProjectFound = true;
       });
     },

@@ -11,7 +11,11 @@ const Trash = () => {
   const openItem = (item) => {
     if (item.kind === 'folder') return setActiveLocation(item);
 
-    openWindow(`${item.fileType}${item.kind}`, item);
+    if (!item.fileType) {
+      console.error('Item missing fileType:', item);
+      return;
+    }
+    openWindow(`${item.fileType}-${item.kind}`, item);
   };
   return (
     <>
@@ -22,7 +26,7 @@ const Trash = () => {
 
       <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e]'>
         <ul>
-          {locations.trash?.children.map((item) => (
+          {locations.trash?.children?.map((item) => (
             <li
               key={item.id}
               className={item.position}
