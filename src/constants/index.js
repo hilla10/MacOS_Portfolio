@@ -125,9 +125,9 @@ const dockApps = [
   },
   {
     id: 'trash',
-    name: 'Archive', // was "Trash"
+    name: 'Trash',
     icon: 'trash.png',
-    canOpen: false,
+    canOpen: true,
   },
 ];
 
@@ -824,6 +824,13 @@ const WINDOW_CONFIG = {
     data: null,
   },
   imgfile: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+  },
+  trash: {
     isOpen: false,
     zIndex: INITIAL_Z_INDEX,
     maximize: false,

@@ -28,8 +28,11 @@ const WindowWrapper = (Component, windowKey) => {
       if (!el) return;
 
       const [instance] = Draggable.create(el, {
+        type: 'x,y',
         onPress: () => focusWindow(windowKey),
         disable: maximize,
+        allowEventDefault: true,
+        ignore: 'input, textarea, .search, .search *',
       });
 
       return () => instance.kill();
@@ -43,7 +46,6 @@ const WindowWrapper = (Component, windowKey) => {
 
     return (
       <section
-       
         id={windowKey}
         ref={ref}
         style={{ zIndex }}

@@ -17,7 +17,7 @@ const Image = () => {
         <h2 className='text-md font-bold'>{name}</h2>
       </div>
 
-      <div className='p-5  bg-white dark:bg-[#1e1e1e]'>
+      <div className='p-5 bg-white dark:bg-[#1e1e1e]'>
         {imageUrl ? (
           <div className='w-full'>
             <img

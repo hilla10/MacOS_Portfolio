@@ -7,6 +7,9 @@ const DEFAULT_LOCATION = locations.work;
 const useLocationStore = create(
   immer((set) => ({
     activeLocation: DEFAULT_LOCATION,
+    searchInput: '',
+    filtered: null,
+    isProjectFound: true,
 
     setActiveLocation: (location = null) =>
       set((state) => {
@@ -19,6 +22,36 @@ const useLocationStore = create(
         if (location === undefined) return;
         state.activeLocation = DEFAULT_LOCATION;
       }),
+
+    search: (e, input, activeLocation) => {
+      set((state) => {
+        if (e.key !== 'Enter') return;
+
+        if (!input.trim()) return;
+        // Access the root "Work" folder children
+        const workItems = activeLocation.children;
+
+        // Case-insensitive partial match
+        const match = workItems.find((item) =>
+          item.name.toLowerCase().includes(input.toLowerCase())
+        );
+
+        if (!match) {
+          state.isProjectFound = false;
+          return;
+        }
+        state.filtered = match;
+        state.isProjectFound = true;
+      });
+    },
+
+    resetSearch: () => {
+      set((state) => {
+        state.filtered = null;
+
+        state.isProjectFound = true;
+      });
+    },
   }))
 );
 

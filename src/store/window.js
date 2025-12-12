@@ -1,11 +1,6 @@
 import { INITIAL_Z_INDEX, WINDOW_CONFIG } from '@constants';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-
-// Do NOT access `window`/`localStorage` at module evaluation time — keep
-// safe defaults here to avoid SSR/hydration mismatches. Client-side
-// rehydration can be performed after mount (see `rehydrateWindowStoreFromLocalStorage`).
-
 const useWindowStore = create(
   immer((set) => ({
     windows: WINDOW_CONFIG,
@@ -13,6 +8,7 @@ const useWindowStore = create(
     theme: 'light',
     isClicked: false,
     wallpaper: '/images/wallpaper-light.png',
+    isSearching: false,
 
     openWindow: (windowKey, data = null) =>
       set((state) => {
@@ -115,8 +111,6 @@ const useWindowStore = create(
 );
 export default useWindowStore;
 
-// Client-only helper: call this from a top-level client effect (e.g. in App.jsx
-// inside useEffect) to populate the store from localStorage after hydration.
 export const rehydrateWindowStoreFromLocalStorage = () => {
   if (typeof window === 'undefined') return;
 
