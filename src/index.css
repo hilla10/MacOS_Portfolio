@@ -95,7 +95,7 @@ body {
 
 @layer components {
   .icon {
-    @apply p-1 hover:bg-gray-200 rounded hover:cursor-default;
+    @apply p-1 hover:bg-gray-200 dark:hover:bg-[#222433] rounded hover:cursor-default;
   }
 
   #welcome {
