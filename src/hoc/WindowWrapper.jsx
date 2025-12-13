@@ -5,6 +5,8 @@ import gsap from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { useLayoutEffect, useRef } from 'react';
 
+gsap.registerPlugin(Draggable);
+
 const WindowWrapper = (Component, windowKey) => {
   const Wrapped = (props) => {
     const { focusWindow, windows } = useWindowStore();
@@ -27,16 +29,48 @@ const WindowWrapper = (Component, windowKey) => {
       const el = ref.current;
       if (!el) return;
 
-      const [instance] = Draggable.create(el, {
-        type: 'x,y',
-        onPress: () => focusWindow(windowKey),
-        disable: maximize,
-        allowEventDefault: true,
-        ignore: 'input, textarea, .search, .search *',
+      gsap.registerPlugin(Draggable);
+
+      let draggable;
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 640px)', () => {
+        const [instance] = Draggable.create(el, {
+          type: 'x,y',
+          onPress: function () {
+            this.update(); // recalculates position (prevents jump)
+            focusWindow(windowKey); // bring window to front
+          },
+
+          allowEventDefault: true,
+          ignore: 'input, textarea, .search, .search *',
+        });
+
+        draggable = instance;
+
+        if (maximize) {
+          draggable.disable();
+        }
+
+        return () => {
+          draggable.kill();
+        };
       });
 
-      return () => instance.kill();
-    }, []);
+      // const [instance] = Draggable.create(el, {
+      //   type: 'x,y',
+      //   onPress: () => focusWindow(windowKey),
+      //   disable: maximize,
+      //   allowEventDefault: true,
+      //   ignore: 'input, textarea, .search, .search *',
+      // });
+
+      mm.add('(max-width: 639px)', () => {
+        if (draggable) draggable.disable();
+      });
+
+      return () => mm.revert();
+    }, [maximize]);
 
     useLayoutEffect(() => {
       const el = ref.current;

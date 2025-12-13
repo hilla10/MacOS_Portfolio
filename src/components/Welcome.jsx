@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { widget } from '@constants';
+import MobileDock from './MobileDock';
+import { Search } from 'lucide-react';
 
 const FONT_WEIGHTS = {
   subtitle: { min: 100, max: 400, default: 100 },
@@ -122,19 +125,29 @@ const Welcome = () => {
 
   return (
     <section id='welcome'>
-      <p ref={subtitleRef}>
+      <p ref={subtitleRef} className='medium-screen'>
         {renderText(
           "Hey, I'm Hailemichael! Welcome to my",
           'text-3xl font-georama',
           100
         )}{' '}
       </p>
-      <h1 ref={titleRef} className='mt-7'>
+      <h1 ref={titleRef} className='mt-7 medium-screen'>
         {renderText('portfolio', 'text-9xl italic font-georama')}
       </h1>
 
       <div className='small-screen'>
-        <p>This Portfolio is designed for desktop/tablet screens only.</p>
+        <div className='widget'>
+          {widget?.map(({ id, name, icon }) => (
+            <img src={icon} alt={name} key={id} />
+          ))}{' '}
+        </div>
+
+        <div className='search'>
+          <Search className='icon' />
+          <span>Search</span>
+        </div>
+        <MobileDock />
       </div>
     </section>
   );

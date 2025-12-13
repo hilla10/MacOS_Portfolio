@@ -96,37 +96,106 @@ const dockApps = [
   {
     id: 'finder',
     name: 'Portfolio', // was "Finder"
-    icon: 'finder.png',
+    icon: '/images/finder.png',
     canOpen: true,
   },
   {
     id: 'safari',
     name: 'Articles', // was "Safari"
-    icon: 'safari.png',
+    icon: '/images/safari.png',
     canOpen: true,
   },
   {
     id: 'photos',
     name: 'Gallery', // was "Photos"
-    icon: 'photos.png',
+    icon: '/images/photos.png',
     canOpen: true,
   },
   {
     id: 'contact',
     name: 'Contact', // or "Get in touch"
-    icon: 'contact.png',
+    icon: '/images/contact.png',
     canOpen: true,
   },
   {
     id: 'terminal',
     name: 'Skills', // was "Terminal"
-    icon: 'terminal.png',
+    icon: '/images/terminal.png',
     canOpen: true,
   },
   {
     id: 'trash',
     name: 'Trash',
-    icon: 'trash.png',
+    icon: '/images/trash.png',
+    canOpen: true,
+  },
+];
+
+const widget = [
+  {
+    id: 1,
+    name: 'resume',
+    icon: '/mobile/resume.svg',
+  },
+  {
+    id: 2,
+    name: 'calendar',
+    icon: '/mobile/calendar.svg',
+  },
+  {
+    id: 3,
+    name: 'mail',
+    icon: '/mobile/mail.svg',
+  },
+  {
+    id: 4,
+    name: 'clock',
+    icon: '/mobile/clock.svg',
+  },
+  {
+    id: 5,
+    name: 'message',
+    icon: '/mobile/message.svg',
+  },
+  {
+    id: 6,
+    name: 'music',
+    icon: '/mobile/music.svg',
+  },
+  {
+    id: 7,
+    name: 'setting',
+    icon: '/mobile/setting.svg',
+  },
+  {
+    id: 8,
+    name: 'facetime',
+    icon: '/mobile/face-time.svg',
+  },
+];
+const mobileDocksApp = [
+  {
+    id: 'finder',
+    name: 'Portfolio', // was "Finder"
+    icon: '/mobile/folder.png',
+    canOpen: true,
+  },
+  {
+    id: 'safari',
+    name: 'Articles', // was "Safari"
+    icon: '/mobile/safari.png',
+    canOpen: true,
+  },
+  {
+    id: 'photos',
+    name: 'Gallery', // was "Photos"
+    icon: '/mobile/gallery.png',
+    canOpen: true,
+  },
+  {
+    id: 'contact',
+    name: 'Contact', // or "Get in touch"
+    icon: '/mobile/contact.png',
     canOpen: true,
   },
 ];
@@ -267,6 +336,8 @@ export {
   photosLinks,
   gallery,
   wallpapers,
+  widget,
+  mobileDocksApp,
 };
 
 const WORK_LOCATION = {

@@ -4,9 +4,9 @@ import { Tooltip } from 'react-tooltip';
 import { useRef } from 'react';
 
 import useWindowStore from '@store/window';
-import { dockApps } from '@constants';
+import { mobileDocksApp } from '@constants';
 
-const Dock = () => {
+const MobileDock = () => {
   const { openWindow, closeWindow, windows } = useWindowStore();
 
   const dockRef = useRef(null);
@@ -76,7 +76,7 @@ const Dock = () => {
   return (
     <section id='dock' ref={dockRef}>
       <div className='dock-container'>
-        {dockApps.map(({ id, name, icon, canOpen }) => {
+        {mobileDocksApp.map(({ id, name, icon, canOpen }) => {
           const isAppOpen = windows[id]?.isOpen;
           const isMinimize = windows[id]?.minimize;
 
@@ -93,10 +93,10 @@ const Dock = () => {
                 onClick={() => toggleApp({ id, canOpen })}>
                 <img
                   src={icon}
-                  alt='icon'
+                  alt={name}
                   loading='lazy'
                   className={canOpen ? '' : 'opacity-60'}
-                />
+                />{' '}
               </button>
 
               {(isAppOpen || isMinimize) && (
@@ -111,4 +111,4 @@ const Dock = () => {
   );
 };
 
-export default Dock;
+export default MobileDock;
