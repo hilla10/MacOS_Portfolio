@@ -23,12 +23,12 @@ const Finder = () => {
   const [folder, setFolder] = useState('images');
 
   const extractIcon = (item) => {
-    const arr = item.icon.split('/').slice(2);
-    const str = arr.toString();
-    return str === 'folder.png' ? `${folder}/${str}` : `images/${str}`;
-    // setExtractedIcon(extractImage);
+    const pathSegments = item.icon.split('/').slice(2);
+    const fileName = pathSegments.join('/');
+    return fileName === 'folder.png'
+      ? `${folder}/${fileName}`
+      : `images/${fileName}`;
   };
-
   const openItem = (item) => {
     if (item.fileType === 'pdf') return openWindow('resume');
 

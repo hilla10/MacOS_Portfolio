@@ -140,9 +140,8 @@ const Welcome = () => {
         <div className='widget'>
           {widget?.map(({ id, name, icon }) => (
             <img src={icon} alt={name} key={id} />
-          ))}{' '}
+          ))}
         </div>
-
         <div className='search'>
           <Search className='icon' />
           <span>Search</span>

@@ -56,20 +56,37 @@ const MobileDock = () => {
     };
   }, []);
 
-  const toggleApp = (app) => {
-    if (!app.canOpen) return;
+  // const toggleApp = (app) => {
+  //   if (!app.canOpen) return;
 
-    const windowState = windows[app.id];
+  //   const windowState = windows[app.id];
+
+  //   if (!windowState) {
+  //     console.error(`Window not found for app: ${app.id}`);
+  //     return;
+  //   }
+
+  //   if (windowState.isOpen) {
+  //     closeWindow(app.id);
+  //   } else {
+  //     openWindow(app.id);
+  //   }
+  // };
+
+  const toggleApp = (appId) => {
+    const app = mobileDocksApp.find((a) => a.id === appId);
+    if (!app?.canOpen) return;
+
+    const windowState = windows[appId];
 
     if (!windowState) {
-      console.error(`Window not found for app: ${app.id}`);
       return;
     }
 
     if (windowState.isOpen) {
-      closeWindow(app.id);
+      closeWindow(appId);
     } else {
-      openWindow(app.id);
+      openWindow(appId);
     }
   };
 
@@ -90,7 +107,7 @@ const MobileDock = () => {
                 data-tooltip-content={name}
                 data-delay-show={150}
                 disabled={!canOpen}
-                onClick={() => toggleApp({ id, canOpen })}>
+                onClick={() => toggleApp(id)}>
                 <img
                   src={icon}
                   alt={name}

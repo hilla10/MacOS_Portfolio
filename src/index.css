@@ -109,7 +109,7 @@ body {
       @apply sm:hidden my-7 mx-2 rounded-md absolute top-10 h-screen flex flex-col items-center justify-start;
 
       .search {
-        @apply px-3 py-1 bottom-44 absolute flex items-center justify-center bg-[#1e4c66] rounded-[100px] font-medium;
+        @apply px-3 py-1 bottom-46 absolute flex items-center justify-center bg-[#1e4c66] rounded-[100px] font-medium;
       }
 
       .widget {
@@ -474,7 +474,7 @@ body {
     }
 
     .footer {
-      @apply absolute bottom-5 mt-4 border-t border-t-[#0000004D] w-full sm:hidden;
+      @apply absolute bottom-5 border-t border-t-[#0000004D] w-full sm:hidden;
       div {
         @apply flex items-center justify-between mx-12 pt-2;
 
