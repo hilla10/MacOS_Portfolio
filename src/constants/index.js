@@ -170,7 +170,7 @@ const widget = [
   {
     id: 8,
     name: 'facetime',
-    icon: '/mobile/face-time.svg',
+    icon: '/mobile/facetime.svg',
   },
 ];
 const mobileDocksApp = [
