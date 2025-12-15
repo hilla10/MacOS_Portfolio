@@ -1,8 +1,10 @@
 import { INITIAL_Z_INDEX, WINDOW_CONFIG } from '@constants';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
+import useLocationStore from './location';
+
 const useWindowStore = create(
-  immer((set) => ({
+  immer((set, get) => ({
     windows: WINDOW_CONFIG,
     nextZIndex: INITIAL_Z_INDEX + 1,
     theme: 'light',
@@ -49,6 +51,18 @@ const useWindowStore = create(
         win.minimize = true;
         win.isOpen = false;
       });
+    },
+
+    openItem: (item) => {
+      const { setActiveLocation } = useLocationStore.getState();
+      const { openWindow } = get();
+      if (item.fileType === 'pdf') return openWindow('resume');
+
+      if (item.kind === 'folder') return setActiveLocation(item);
+
+      if (['fig', 'url'].includes(item.fileType) && item.href)
+        return window.open(item.href, '_blank');
+      openWindow(`${item.fileType}${item.kind}`, item);
     },
 
     toggleTheme: (theme) => {

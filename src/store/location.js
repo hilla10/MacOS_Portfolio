@@ -1,6 +1,7 @@
 import { locations } from '@constants';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
+import useWindowStore from './window';
 
 const DEFAULT_LOCATION = locations.work;
 
@@ -47,6 +48,14 @@ const useLocationStore = create(
         }
         state.filtered = match;
         state.isProjectFound = true;
+
+        if (match.kind === 'folder') {
+          state.activeLocation = match;
+          return;
+        }
+
+        const { openItem } = useWindowStore.getState();
+        openItem(match);
       });
     },
     resetSearch: () => {

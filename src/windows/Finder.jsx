@@ -9,7 +9,7 @@ import useWindowStore from '@store/window';
 import { useEffect, useState } from 'react';
 
 const Finder = () => {
-  const { openWindow } = useWindowStore();
+  const { closeWindow, openItem } = useWindowStore();
   const {
     activeLocation,
     setActiveLocation,
@@ -21,6 +21,7 @@ const Finder = () => {
   const [input, setInput] = useState('');
   const [activateInput, setActivateInput] = useState(false);
   const [folder, setFolder] = useState('images');
+  // const [filteredItem, setFilteredItem] = useState({});
 
   const extractIcon = (item) => {
     const pathSegments = item.icon.split('/').slice(2);
@@ -28,16 +29,6 @@ const Finder = () => {
     return fileName === 'folder.png'
       ? `${folder}/${fileName}`
       : `images/${fileName}`;
-  };
-  const openItem = (item) => {
-    if (item.fileType === 'pdf') return openWindow('resume');
-
-    if (item.kind === 'folder') return setActiveLocation(item);
-
-    if (['fig', 'url'].includes(item.fileType) && item.href)
-      return window.open(item.href, '_blank');
-
-    openWindow(`${item.fileType}${item.kind}`, item);
   };
 
   const filteredItems =
@@ -84,6 +75,8 @@ const Finder = () => {
     </div>
   );
 
+  const isRoot = activeLocation.id === locations.work.id;
+
   return (
     <>
       <div id='window-header'>
@@ -95,7 +88,9 @@ const Finder = () => {
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => search(e, input, activeLocation)}
+              onKeyDown={(e) => {
+                search(e, input, activeLocation);
+              }}
               type='text'
               placeholder='Search or enter name'
               className='fle-2'
@@ -125,9 +120,27 @@ const Finder = () => {
         {/* start of mobile device header */}
         <div className='small-screen'>
           <div>
-            <img src='/mobile/back.png' alt='go back' />
+            <img
+              src='/mobile/back.png'
+              alt='go back'
+              onClick={() => {
+                resetSearch();
+                isRoot
+                  ? closeWindow('finder')
+                  : setActiveLocation(locations.work);
+              }}
+            />
             <h4 className='truncate w-20 '>{activeLocation.name}</h4>
-            <img src='/mobile/cancel.png' alt='cancel' />
+            <img
+              src='/mobile/cancel.png'
+              alt='cancel'
+              onClick={() => {
+                closeWindow('finder');
+                setActiveLocation(locations.work);
+                resetSearch();
+                setInput('');
+              }}
+            />
           </div>
           <div className='search'>
             <Search className='icon size-6.5' />
@@ -170,12 +183,30 @@ const Finder = () => {
 
         <div className='footer'>
           <div>
+            {!isRoot && (
+              <p>
+                <img
+                  src='/mobile/work.png'
+                  alt='work'
+                  onClick={() => {
+                    setActiveLocation(locations.work);
+                    resetSearch();
+                    setInput('');
+                  }}
+                />
+                Work
+              </p>
+            )}
             <p>
-              <img src='/mobile/work.png' alt='work' />
-              Work
-            </p>
-            <p>
-              <img src='/mobile/time.png' alt='time' />
+              <img
+                src='/mobile/time.png'
+                alt='time'
+                onClick={() => {
+                  setActiveLocation(locations.about);
+                  resetSearch();
+                  setInput('');
+                }}
+              />
               About Me
             </p>
           </div>
