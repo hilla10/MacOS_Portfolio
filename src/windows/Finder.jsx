@@ -1,12 +1,12 @@
-import clsx from 'clsx';
 import { Mic, Search, XIcon } from 'lucide-react';
-
 import { WindowController } from '@components';
 import { locations } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
 import useLocationStore from '@store/location';
 import useWindowStore from '@store/window';
 import { useEffect, useState } from 'react';
+import FooterItem from '@components/FooterItem';
+import RenderList from '@components/RenderList';
 
 const Finder = () => {
   const { closeWindow, openItem } = useWindowStore();
@@ -51,31 +51,9 @@ const Finder = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const renderList = (name, items) => (
-    <div>
-      <h3>{name}</h3>
+  const isWorkRoot = activeLocation.id === locations.work.id;
 
-      <ul>
-        {items.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => {
-              setActiveLocation(item);
-              setInput('');
-              resetSearch();
-            }}
-            className={clsx(
-              item.id === activeLocation.id ? 'active' : 'not-active'
-            )}>
-            <img src={item.icon} className='w-4' alt={item.name} />
-            <p className='text-sm font-medium truncate'>{item.name}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
-  const isRoot = activeLocation.id === locations.work.id;
+  const isAboutMeRoot = activeLocation.id === locations.about.id;
 
   return (
     <>
@@ -125,7 +103,7 @@ const Finder = () => {
               alt='go back'
               onClick={() => {
                 resetSearch();
-                isRoot
+                isWorkRoot
                   ? closeWindow('finder')
                   : setActiveLocation(locations.work);
               }}
@@ -158,8 +136,22 @@ const Finder = () => {
         {/* end of  mobile device header */}
 
         <div className='sidebar'>
-          {renderList('Favorites', Object.values(locations))}
-          {renderList('Work', locations.work.children)}
+          <RenderList
+            name='Favorites'
+            items={Object.values(locations)}
+            setActiveLocation={setActiveLocation}
+            activeLocation={activeLocation}
+            setInput={setInput}
+            resetSearch={resetSearch}
+          />
+          <RenderList
+            name='Work'
+            items={locations.work.children}
+            setActiveLocation={setActiveLocation}
+            activeLocation={activeLocation}
+            setInput={setInput}
+            resetSearch={resetSearch}
+          />
         </div>
         <ul className='content'>
           {(filtered ? filtered.children : filteredItems)?.map((item) => {
@@ -183,34 +175,28 @@ const Finder = () => {
 
         <div className='footer'>
           <div>
-            {!isRoot && (
-              <p>
-                <img
-                  src='/mobile/work.png'
-                  alt='work'
-                  onClick={() => {
-                    setActiveLocation(locations.work);
-                    resetSearch();
-                    setInput('');
-                  }}
-                />
-                Work
-              </p>
-            )}
-            <p>
-              <img
-                src='/mobile/time.png'
-                alt='time'
-                onClick={() => {
-                  setActiveLocation(locations.about);
-                  resetSearch();
-                  setInput('');
-                }}
-              />
-              About Me
-            </p>
+            <FooterItem
+              label='Work'
+              icon='/mobile/work.png'
+              isActive={isWorkRoot}
+              onClick={() => {
+                setActiveLocation(locations.work);
+                resetSearch();
+                setInput('');
+              }}
+            />
+
+            <FooterItem
+              label='About Me'
+              icon='/mobile/time.png'
+              isActive={isAboutMeRoot}
+              onClick={() => {
+                setActiveLocation(locations.about);
+                resetSearch();
+                setInput('');
+              }}
+            />
           </div>
-          {/* TODO: */}
         </div>
       </div>
     </>
