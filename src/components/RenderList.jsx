@@ -22,9 +22,17 @@ const RenderList = ({
               resetSearch();
             }}
             className={clsx(
-              item.id === activeLocation.id ? 'active' : 'not-active'
+              item.id === activeLocation?.id ? 'active' : 'not-active'
             )}>
-            <img src={item.icon} className='w-4' alt={item.name} />
+            {' '}
+            <img
+              src={item.icon || '/images/image.png'}
+              className='w-4'
+              alt={item.name}
+              onError={(e) => {
+                e.target.src = '/images/image.png';
+              }}
+            />
             <p className='text-sm font-medium truncate'>{item.name}</p>
           </li>
         ))}

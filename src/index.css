@@ -478,7 +478,7 @@ body {
       div {
         @apply flex items-center justify-between mx-12 pt-2;
 
-        p {
+        button {
           @apply text-[#999999] text-[12px] flex flex-col items-center gap-0.5;
         }
       }
