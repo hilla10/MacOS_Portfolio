@@ -94,7 +94,7 @@ const Finder = () => {
         )}
       </div>
 
-      <div className='bg-white flex max-sm:block h-full dark:bg-[#333237] dark:text-white'>
+      <div className='bg-white flex max-sm:block h-full dark:bg-[#333237] dark:text-white max-sm:dark:bg-[#1e1e1e]'>
         {/* start of mobile device header */}
         <div className='small-screen'>
           <div>
