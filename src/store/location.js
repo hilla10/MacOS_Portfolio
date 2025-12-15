@@ -11,7 +11,7 @@ const useLocationStore = create(
     searchInput: '',
     filtered: null,
     isProjectFound: true,
-
+    shouldOpenItem: null,
     setActiveLocation: (location) =>
       set((state) => {
         if (location == null) return;
@@ -54,9 +54,20 @@ const useLocationStore = create(
           return;
         }
 
-        const { openItem } = useWindowStore.getState();
-        openItem(match);
+        state.shouldOpenItem = match;
       });
+
+      const currentState = useLocationStore.getState();
+      if (
+        currentState.shouldOpenItem &&
+        currentState.shouldOpenItem.kind !== 'folder'
+      ) {
+        const { openItem } = useWindowStore.getState();
+        openItem(currentState.shouldOpenItem);
+        set((state) => {
+          state.shouldOpenItem = null;
+        });
+      }
     },
     resetSearch: () => {
       set((state) => {
