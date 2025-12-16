@@ -328,7 +328,7 @@ body {
     .small-screen {
       @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 bg-white;
       img {
-        @apply w-20.5 h-5.5;
+        @apply w-20.5 h-5.5 max-w-none;
       }
       h2 {
         @apply text-lg font-medium dark:text-white mr-16;

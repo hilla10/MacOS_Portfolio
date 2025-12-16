@@ -19,21 +19,18 @@ const Contact = () => {
         type='contact'
       />
 
-      <div className='p-5 max-sm:px-16 max-sm:py-2 space-y-5 max-sm:text-center max-sm:flex flex-col items-center max-sm:w-[358px] max-sm:m-auto max-sm:space-y-1.5'>
+      <div className='p-5 max-sm:px-16 max-sm:py-2 space-y-5 max-sm:text-center max-sm:flex max-sm:flex-col max-sm:items-center max-sm:w-[358px] max-sm:m-auto max-sm:space-y-1.5'>
+        {' '}
         <img
           src='/images/haila.png'
           alt='Hailemichael'
           className='w-20 rounded-full'
         />
-
         <h3 className='dark:text-white'>Let's Connect</h3>
-
         <p className='dark:text-white'>
           Got an idea? A bug to squash? Or just wanna talk tech? I'm in.
         </p>
-
         <p className='dark:text-white'>hillaman592@gmail.com</p>
-
         <ul>
           {socials.map(({ id, bg, link, icon, text }) => (
             <li key={id} style={{ backgroundColor: bg }}>

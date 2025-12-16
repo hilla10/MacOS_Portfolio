@@ -15,13 +15,14 @@ const Text = () => {
     <>
       <div id='window-header'>
         <WindowController target='txtfile' />
-        <img
-          src='/mobile/back.png'
-          alt='go back'
+        <button
           onClick={() => {
             closeWindow('txtfile');
           }}
-        />
+          className='max-sm:block hidden'
+          aria-label='go back'>
+          <img src='/mobile/back.png' alt='' className='w-20.5 5.5' />
+        </button>{' '}
         <h2>{name}</h2>
       </div>
 

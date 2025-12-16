@@ -3,7 +3,7 @@ import MobileHeader from '@components/MobileHeader';
 import { gallery, photosLinks } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
 import useWindowStore from '@store/window';
-import { Mail, Mic, Search } from 'lucide-react';
+import { Mail, Search } from 'lucide-react';
 import React from 'react';
 
 const Gallery = () => {

@@ -84,16 +84,14 @@ const Safari = () => {
 
       <div className='footer-gallery'>
         <div className='search'>
-          {/* <div> */}
           <Search className='icon size-6.5' />
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             type='text'
             placeholder='Search or enter title name'
-            className='fle-2'
+            className='flex-2'
           />
-          {/* </div> */}
           <Mic className='icon size-6.5' />
         </div>
         <div className='flex-between'>

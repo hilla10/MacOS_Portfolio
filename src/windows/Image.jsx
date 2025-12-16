@@ -15,11 +15,12 @@ const Image = () => {
     <>
       <div id='window-header'>
         <WindowController target='imgfile' />
-        <img
-          src='/mobile/back.png'
-          alt='go back'
+        <button
           onClick={() => closeWindow('imgfile')}
-        />
+          className='...'
+          aria-label='go back'>
+          <img src='/mobile/back.png' alt='' aria-hidden='true' />
+        </button>
         <h2 className='text-md font-bold'>{name}</h2>
       </div>
 
