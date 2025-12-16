@@ -5,12 +5,14 @@
 
 html,
 body {
-  width: 100dvw;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
-  height: 100dvh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: scroll; /* fixed breaks on mobile */
 }
 
 @theme {
