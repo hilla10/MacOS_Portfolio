@@ -1,6 +1,8 @@
 import { WindowController } from '@components';
+import MobileHeader from '@components/MobileHeader';
 import { blogPosts } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
+import useWindowStore from '@store/window';
 import {
   ChevronLeft,
   ChevronRight,
@@ -11,10 +13,18 @@ import {
   Search,
   Share,
   ShieldHalf,
+  Mic,
 } from 'lucide-react';
-import React from 'react';
+import { useState } from 'react';
 
 const Safari = () => {
+  const { closeWindow } = useWindowStore();
+  const [input, setInput] = useState('');
+
+  const blogs = blogPosts.filter((post) =>
+    post.title.toLowerCase().includes(input.toLowerCase())
+  );
+
   return (
     <>
       <div id='window-header'>
@@ -48,13 +58,15 @@ const Safari = () => {
         </div>
       </div>
 
+      <MobileHeader closeWindow={closeWindow} name='Safari' type='safari' />
+
       <div className='blog'>
         <h2>My Developer Blog</h2>
 
         <div className='space-y-8'>
-          {blogPosts.map(({ id, date, title, image, link }) => (
+          {blogs?.map(({ id, date, title, image, link }) => (
             <div key={id} className='blog-post'>
-              <div className='col-span-2'>
+              <div className='col-span-2 max-sm:col-span-3 '>
                 <img src={image} alt={title} />
               </div>
 
@@ -67,6 +79,29 @@ const Safari = () => {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className='footer-gallery'>
+        <div className='search'>
+          {/* <div> */}
+          <Search className='icon size-6.5' />
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            type='text'
+            placeholder='Search or enter title name'
+            className='fle-2'
+          />
+          {/* </div> */}
+          <Mic className='icon size-6.5' />
+        </div>
+        <div className='flex-between'>
+          <img src='/mobile/left-arrow.png' alt='Left Arrow' />
+          <img src='/mobile/right-arrow.png' alt='Right Arrow' />
+          <img src='/mobile/upload.png' alt='Upload' />
+          <img src='/mobile/book.png' alt='Book' />
+          <img src='/mobile/copy.png' alt='Copy' />
         </div>
       </div>
     </>

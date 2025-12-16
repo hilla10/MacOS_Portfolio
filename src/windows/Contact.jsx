@@ -1,8 +1,11 @@
 import { WindowController } from '@components';
+import MobileHeader from '@components/MobileHeader';
 import { socials } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
+import useWindowStore from '@store/window';
 
 const Contact = () => {
+  const { closeWindow } = useWindowStore();
   return (
     <>
       <div id='window-header'>
@@ -10,7 +13,13 @@ const Contact = () => {
         <h2 className='dark:text-white'>Contact Me</h2>
       </div>
 
-      <div className='p-5 space-y-5'>
+      <MobileHeader
+        closeWindow={closeWindow}
+        name='Contact Me'
+        type='contact'
+      />
+
+      <div className='p-5 max-sm:px-16 max-sm:py-2 space-y-5 max-sm:text-center max-sm:flex flex-col items-center max-sm:w-[358px] max-sm:m-auto max-sm:space-y-1.5'>
         <img
           src='/images/haila.png'
           alt='Hailemichael'

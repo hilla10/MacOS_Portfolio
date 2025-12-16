@@ -4,6 +4,7 @@ import useWindowStore from '@store/window';
 import React from 'react';
 
 const Text = () => {
+  const { closeWindow } = useWindowStore();
   const data = useWindowStore((s) => s.windows.txtfile.data);
 
   if (!data) return null;
@@ -14,10 +15,17 @@ const Text = () => {
     <>
       <div id='window-header'>
         <WindowController target='txtfile' />
+        <img
+          src='/mobile/back.png'
+          alt='go back'
+          onClick={() => {
+            closeWindow('txtfile');
+          }}
+        />
         <h2>{name}</h2>
       </div>
 
-      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e]'>
+      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e] max-sm:overflow-y-auto max-sm:h-screen max-sm:pb-25'>
         {image || imageUrl ? (
           <div className='w-full'>
             <img

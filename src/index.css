@@ -175,18 +175,28 @@ body {
   }
 
   #window-header {
-    @apply flex items-center justify-between pr-4  rounded-t-lg bg-white  dark:bg-[#1e1e1e] dark:text-white border-b border-[#E6E6E6] dark:border-[#FFFFFF1A] select-none text-sm text-gray-400 max-sm:hidden;
+    @apply flex items-center justify-between pr-4  rounded-t-lg bg-white  dark:bg-[#1e1e1e] dark:text-white border-b border-[#E6E6E6] dark:border-[#FFFFFF1A] select-none text-sm text-gray-400;
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-4xl absolute top-40 left-2/12 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none;
 
     #window-header {
-      @apply bg-[#e3e6e8];
+      @apply bg-[#e3e6e8] max-sm:hidden;
     }
 
     #window-controls {
       @apply w-48 px-4 py-4 dark:bg-[#222433] bg-[#e3e6e8];
+    }
+
+    .small-screen {
+      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 gap-5 bg-white;
+      img {
+        @apply w-20.5 h-5.5;
+      }
+      h2 {
+        @apply text-lg font-medium dark:text-white ml-16;
+      }
     }
 
     .search {
@@ -198,21 +208,21 @@ body {
     }
 
     .blog {
-      @apply bg-white dark:bg-[#1e1e1e] p-10 max-w-3xl mx-auto;
+      @apply bg-white dark:bg-[#1e1e1e] p-10 max-sm:p-5 max-w-3xl mx-auto;
 
       h2 {
-        @apply text-xl font-bold text-pink-600 mb-10;
+        @apply text-xl font-bold text-pink-600 mb-10 max-sm:mb-5;
       }
 
       .blog-post {
-        @apply grid grid-cols-12 space-x-5;
+        @apply grid grid-cols-12 space-x-5 space-y-1 items-center;
 
         img {
-          @apply size-full rounded-md object-cover;
+          @apply sm:size-full rounded-md object-cover max-w-19.5 size-19.5;
         }
 
         .content {
-          @apply col-span-10 space-y-3;
+          @apply col-span-10 space-y-3 max-sm:space-y-1 max-sm:col-span-9;
 
           p {
             @apply text-xs text-gray-500 dark:text-white;
@@ -225,6 +235,23 @@ body {
           a {
             @apply text-blue-600 text-xs hover:underline flex items-center gap-3;
           }
+        }
+      }
+    }
+
+    .footer-gallery {
+      @apply sm:hidden absolute bottom-5 border-t border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] pt-2 px-4;
+
+      .search {
+        @apply px-0 pl-2 py-2 mb-4 font-medium grid grid-cols-6 w-full max-sm:border-none rounded-xl;
+        box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.149);
+
+        input {
+          @apply text-[16px] dark:text-[#FFFFFFB2] col-span-4 outline-none;
+        }
+
+        .icons {
+          @apply col-span-2;
         }
       }
     }
@@ -287,11 +314,25 @@ body {
   }
 
   #contact {
-    @apply max-w-2xl absolute top-60 left-5/12 dark:bg-[#1e1e1e] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-2xl absolute top-60 left-5/12 dark:bg-[#1e1e1e] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none;
+
+    #window-header {
+      @apply max-sm:hidden;
+    }
 
     #window-header,
     #window-controls {
       @apply dark:bg-[#222433] bg-[#e3e6e8];
+    }
+
+    .small-screen {
+      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 bg-white;
+      img {
+        @apply w-20.5 h-5.5;
+      }
+      h2 {
+        @apply text-lg font-medium dark:text-white mr-16;
+      }
     }
 
     h2 {
@@ -303,31 +344,45 @@ body {
     }
 
     ul {
-      @apply flex items-center gap-3;
+      @apply flex items-center gap-3 max-sm:flex-col pt-2;
 
       li {
-        @apply rounded-lg p-3 w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300;
+        @apply rounded-lg p-3 w-60 max-sm:w-85 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300;
 
         a {
           @apply space-y-5;
         }
 
         p {
-          @apply font-semibold text-sm text-white;
+          @apply font-semibold text-sm text-white max-sm:text-left;
         }
       }
     }
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0;
+
+    #window-header {
+      @apply max-sm:hidden;
+    }
 
     #window-controls {
       @apply flex gap-2  w-[34.816%] md:w-48 px-4 py-4 dark:bg-[#333237] bg-[#f0f1f0];
     }
 
+    .small-screen {
+      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 gap-5 bg-white;
+      img {
+        @apply w-20.5 h-5.5;
+      }
+      h2 {
+        @apply text-lg font-medium dark:text-white ml-16;
+      }
+    }
+
     .sidebar {
-      @apply w-4/12 md:w-48 flex-none bg-[#f0f1f0] dark:bg-[#333237]  border-r dark:border-[#333237] border-[#e6e6e6] flex flex-col p-3;
+      @apply w-4/12 md:w-48 flex-none bg-[#f0f1f0] dark:bg-[#333237]  border-r dark:border-[#333237] border-[#e6e6e6] flex flex-col p-3 max-sm:hidden;
 
       h2 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -356,7 +411,7 @@ body {
       @apply p-5 dark:bg-[#1e1e1e];
 
       ul {
-        @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+        @apply grid grid-cols-5 max-sm:grid-cols-2 max-sm:grid-rows-2 grid-rows-5 gap-2.5;
 
         li {
           img {
@@ -364,20 +419,30 @@ body {
           }
 
           &:first-child {
-            @apply row-start-1 row-span-3 col-start-1 col-span-3;
+            @apply sm:row-start-1 sm:row-span-3 sm:col-start-1 sm:col-span-3;
           }
 
           &:nth-child(2) {
-            @apply row-start-1 row-span-3 col-start-4 col-span-2;
+            @apply sm:row-start-1 sm:row-span-3 sm:col-start-4 sm:col-span-2;
           }
 
           &:nth-child(3) {
-            @apply row-start-4 row-span-2 col-start-3 col-span-3;
+            @apply sm:row-start-4 sm:row-span-2 sm:col-start-3 sm:col-span-3;
           }
 
           &:last-child {
-            @apply row-start-4 row-span-2 col-start-1 col-span-2;
+            @apply sm:row-start-4 sm:row-span-2 sm:col-start-1 sm:col-span-2;
           }
+        }
+      }
+    }
+
+    .footer-gallery {
+      @apply sm:hidden absolute bottom-5 right-1 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 pr-2;
+
+      img {
+        &:nth-child(2) {
+          @apply w-32.5;
         }
       }
     }
@@ -399,6 +464,10 @@ body {
 
   #finder {
     @apply absolute w-3xl max-sm:left-0 max-sm:top-0 left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl max-sm:w-full max-sm:h-full max-sm:rounded-none;
+
+    #window-header {
+      @apply max-sm:hidden;
+    }
 
     .small-screen {
       @apply w-full py-6 px-5 sm:hidden dark:bg-[#1e1e1e];
@@ -486,27 +555,40 @@ body {
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:right-0 max-sm:h-full max-sm:rounded-none;
 
+    #window-controls {
+      @apply max-sm:hidden;
+    }
     #window-header,
     #window-controls {
       @apply bg-[#e3e6e8] dark:bg-[#222433];
     }
 
+    #window-header {
+      @apply py-2.5 px-4 flex items-center justify-between;
+      img {
+        @apply w-20.5 h-5.5 sm:hidden;
+      }
+    }
+
     h2 {
-      @apply font-bold text-sm text-center w-full;
+      @apply font-bold text-sm text-center sm:w-full max-sm:text-[16px] max-sm:py-2;
     }
   }
 
   #imgfile {
-    @apply w-md absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-md absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:left-0 max-sm:h-screen max-sm:rounded-none max-sm:bg-[#1e1e1e];
 
     #window-controls {
-      @apply bg-[#e3e6e8] dark:bg-[#222433];
+      @apply bg-[#e3e6e8] dark:bg-[#222433] max-sm:hidden;
     }
 
     #window-header {
-      @apply bg-[#e3e6e8] dark:bg-[#222433];
+      @apply bg-[#e3e6e8] dark:bg-[#222433] py-2.5 px-4 flex items-center justify-between;
+      img {
+        @apply w-20.5 h-5.5 sm:hidden;
+      }
 
       p {
         @apply font-bold text-[#5f6266];

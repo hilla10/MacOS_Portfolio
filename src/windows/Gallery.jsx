@@ -1,19 +1,24 @@
 import { WindowController } from '@components';
+import MobileHeader from '@components/MobileHeader';
 import { gallery, photosLinks } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
-import { Mail, Search } from 'lucide-react';
+import useWindowStore from '@store/window';
+import { Mail, Mic, Search } from 'lucide-react';
 import React from 'react';
 
 const Gallery = () => {
+  const { closeWindow } = useWindowStore();
   return (
     <>
       <div id='window-header'>
         <WindowController target='photos' />
-        <div className='ml-5 flex flex-1'>
+        <div className='ml-5 flex flex-1 max-sm:hidden'>
           <Mail className='icon ' />
         </div>
-        <Search className='icon' />
+        <Search className='icon max-sm:hidden' />
       </div>
+
+      <MobileHeader closeWindow={closeWindow} name='All Photos' type='photos' />
 
       <div className='bg-white dark:bg-[#333237] flex h-full'>
         <div className='sidebar'>
@@ -38,6 +43,11 @@ const Gallery = () => {
             ))}
           </ul>
         </div>
+      </div>
+      <div className='footer-gallery'>
+        <img src='/mobile/photo.png' alt='Photo' />
+        <img src='/mobile/album.png' alt='Album' />
+        <img src='/mobile/search.png' alt='Search' />
       </div>
     </>
   );

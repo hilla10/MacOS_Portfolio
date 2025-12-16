@@ -21,7 +21,6 @@ const Finder = () => {
   const [input, setInput] = useState('');
   const [activateInput, setActivateInput] = useState(false);
   const [folder, setFolder] = useState('images');
-  // const [filteredItem, setFilteredItem] = useState({});
 
   const extractIcon = (item) => {
     const pathSegments = item.icon.split('/').slice(2);
