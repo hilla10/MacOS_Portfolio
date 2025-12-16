@@ -21,7 +21,7 @@ const Text = () => {
           }}
           className='max-sm:block hidden'
           aria-label='go back'>
-          <img src='/mobile/back.png' alt='' className='w-20.5 5.5' />
+          <img src='/mobile/back.png' alt='' className='w-20.5 h-5.5' />{' '}
         </button>{' '}
         <h2>{name}</h2>
       </div>
