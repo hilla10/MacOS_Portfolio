@@ -130,7 +130,7 @@ body {
     }
 
     .small-screen {
-      @apply sm:hidden my-7 mx-2 rounded-md absolute top-10 h-[88vh] flex flex-col items-center justify-start max-[360px]:hidden [@media(max-height:680px)]:h-[83vh];
+      @apply sm:hidden my-7 mx-2 rounded-md absolute top-10 h-[88vh] flex flex-col items-center justify-start max-[360px]:hidden [@media(max-height:680px)]:h-[83vh] max-sm:pt-5;
 
       .search {
         @apply px-3 py-1 bottom-24 absolute flex items-center justify-center bg-[#1e4c66] rounded-[100px] font-medium cursor-pointer [@media(max-height:680px)]:bottom-23;
