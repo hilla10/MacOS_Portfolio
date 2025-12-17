@@ -3,7 +3,8 @@ import React from 'react';
 
 const MobileHeader = ({ closeWindow, name, type }) => {
   return (
-    <div className={`small-screen ${type === 'resume' && 'justify-between'}`}>
+    <div
+      className={`small-screen ${type === 'resume' ? 'justify-between' : ''}`}>
       <button
         onClick={() => closeWindow(type)}
         className='back-button'

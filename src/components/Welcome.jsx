@@ -147,7 +147,7 @@ const Welcome = () => {
 
       <div className='small-screen'>
         <div className='widget'>
-          {filteredWidgets?.map(({ id, name, icon }) => (
+          {/* {filteredWidgets?.map(({ id, name, icon }) => (
             <img
               src={icon}
               alt={name}
@@ -155,6 +155,26 @@ const Welcome = () => {
               onClick={() =>
                 toggleApp(id, filteredWidgets, windows, openWindow, closeWindow)
               }
+            />
+          ))} */}
+
+          {filteredWidgets?.map(({ id, name, icon }) => (
+            <img
+              src={icon}
+              alt={name}
+              key={id}
+              role='button'
+              tabIndex={0}
+              onClick={() =>
+                toggleApp(id, widget, windows, openWindow, closeWindow)
+              }
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  toggleApp(id, widget, windows, openWindow, closeWindow);
+                }
+              }}
+              style={{ cursor: 'pointer' }}
             />
           ))}
         </div>

@@ -102,13 +102,12 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-
         <time className='max-sm:hidden'>
           {dayjs().format('dd MMM D h:mm A')}
         </time>
         <time className='sm:hidden'>{dayjs().format(' h:mm A')}</time>
         <button
-          onClick={() => toggleTheme(isDark ? 'light' : 'dark')}
+          onClick={() => setThemeAndWallpaper(isDark ? 'light' : 'dark')}
           className='relative size-7 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl sm:hidden'
           aria-label='Toggle theme'>
           <Sun
@@ -125,7 +124,7 @@ const Navbar = () => {
                 : '-rotate-90 scale-0 opacity-0'
             }`}
           />
-        </button>
+        </button>{' '}
       </div>
     </nav>
   );

@@ -5,6 +5,7 @@ export const toggleApp = (appId, dock, windows, openWindow, closeWindow) => {
   const windowState = windows[appId];
 
   if (!windowState) {
+    openWindow(appId);
     return;
   }
 

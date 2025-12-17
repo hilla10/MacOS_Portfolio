@@ -26,7 +26,8 @@ const Text = () => {
         <h2>{name}</h2>
       </div>
 
-      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e] max-sm:overflow-y-auto scrollbar-hide max-sm:h-screen max-sm:pb-25'>
+      {/* Accessibility note: scrollbar is hidden only on small screens. Hiding scrollbars can reduce discoverability — consider visible scroll indicators or a user preference toggle instead. */}
+      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e] max-sm:overflow-y-auto max-sm:scrollbar-hide max-sm:h-screen max-sm:pb-25'>
         {image || imageUrl ? (
           <div className='w-full'>
             <img

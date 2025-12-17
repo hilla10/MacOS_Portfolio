@@ -28,12 +28,14 @@ const About = () => {
       <div className='bg-white flex max-sm:block h-full dark:bg-[#333237] dark:text-white max-sm:dark:bg-[#1e1e1e]'>
         <ul className='content'>
           {locations.about?.children?.map((item) => (
-            <li
-              key={item.id}
-              className={item.position}
-              onClick={() => openItem(item)}>
-              <img src={item.icon} alt={item.name} />
-              <p>{item.name}</p>
+            <li key={item.id} className={item.position}>
+              <button
+                type='button'
+                onClick={() => openItem(item)}
+                className='w-full text-left'>
+                <img src={item.icon} alt={`${item.name} icon`} />
+                <p>{item.name}</p>
+              </button>
             </li>
           ))}
         </ul>

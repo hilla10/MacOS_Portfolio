@@ -49,9 +49,9 @@ const Resume = () => {
         <Page
           pageNumber={1}
           width={pageWidth <= 640 ? pageWidth : 640}
-          renderTextLayer={false}
-          renderAnnotationLayer={false}
-        />
+          renderTextLayer={pageWidth > 640}
+          renderAnnotationLayer={pageWidth > 640}
+        />{' '}
       </Document>
 
       <div className='footer-gallery'>

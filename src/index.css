@@ -109,7 +109,7 @@ body {
   }
 
   #welcome {
-    @apply text-gray-100 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10 max-[360px]:px-4! max-[260px]:px-2! scrollbar-hide;
+    @apply text-gray-100 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10 max-[360px]:px-4! max-[260px]:px-2! max-sm:scrollbar-hide;
 
     .medium-screen {
       @apply sm:flex hidden;
@@ -366,7 +366,7 @@ body {
   }
 
   #contact {
-    @apply max-w-2xl absolute top-60 left-5/12 dark:bg-[#1e1e1e] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto scrollbar-hide;
+    @apply max-w-2xl absolute top-60 left-5/12 dark:bg-[#1e1e1e] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto max-sm:scrollbar-hide;
     #window-header {
       @apply max-sm:hidden;
     }
@@ -500,7 +500,7 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0 max-sm:overflow-y-auto scrollbar-hide;
+    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0 max-sm:overflow-y-auto max-sm:scrollbar-hide;
 
     #window-controls {
       @apply bg-[#e3e6e8] dark:bg-[#222433];

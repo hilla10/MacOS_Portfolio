@@ -176,7 +176,7 @@ const widget = [
   },
   {
     id: 'about',
-    name: 'facetime',
+    name: 'face Time',
     icon: '/mobile/facetime.svg',
     canOpen: true,
   },
