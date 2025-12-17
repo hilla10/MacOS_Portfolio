@@ -6,5 +6,18 @@ import Text from '@windows/Text';
 import Image from '@windows/Image';
 import Contact from '@windows/Contact';
 import Gallery from '@windows/Gallery';
+import Trash from '@windows/Trash';
+import About from '@windows/About';
 
-export { Terminal, Safari, Resume, Finder, Text, Image, Contact, Gallery };
+export {
+  Terminal,
+  Safari,
+  Resume,
+  Finder,
+  Text,
+  Image,
+  Contact,
+  Gallery,
+  About,
+  Trash,
+};

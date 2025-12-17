@@ -44,9 +44,11 @@ const Safari = () => {
             <Search className='icon' />
 
             <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               type='text'
-              placeholder='Search or enter website name'
-              className='fle-1'
+              placeholder='Search or enter title name'
+              className='flex-2'
             />
           </div>
         </div>

@@ -1,9 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { widget } from '@constants';
 import MobileDock from './MobileDock';
-import { Search } from 'lucide-react';
+import { Search, X } from 'lucide-react';
+import useWindowStore from '@store/window';
+import { toggleApp } from '@utils/toggleApp';
 
 const FONT_WEIGHTS = {
   subtitle: { min: 100, max: 400, default: 100 },
@@ -110,8 +112,11 @@ const setupTextHover = (container, type) => {
 };
 
 const Welcome = () => {
+  const { openWindow, closeWindow, windows } = useWindowStore();
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
+  const [input, setInput] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
 
   useGSAP(() => {
     const titleCleanup = setupTextHover(titleRef.current, 'title');
@@ -122,6 +127,10 @@ const Welcome = () => {
       titleCleanup();
     };
   }, []);
+
+  const filteredWidgets = widget.filter((item) =>
+    item.name.toLowerCase().includes(input.toLowerCase())
+  );
 
   return (
     <section id='welcome'>
@@ -138,15 +147,58 @@ const Welcome = () => {
 
       <div className='small-screen'>
         <div className='widget'>
-          {widget?.map(({ id, name, icon }) => (
-            <img src={icon} alt={name} key={id} />
+          {filteredWidgets?.map(({ id, name, icon }) => (
+            <img
+              src={icon}
+              alt={name}
+              key={id}
+              onClick={() =>
+                toggleApp(id, filteredWidgets, windows, openWindow, closeWindow)
+              }
+            />
           ))}
         </div>
-        <div className='search'>
-          <Search className='icon' />
-          <span>Search</span>
+        <div
+          className={`search ${
+            isSearching ? 'p-2 w-86 mb-2 transition-all duration-300' : ''
+          } `}
+          onClick={() => setIsSearching(true)}>
+          {isSearching ? (
+            <>
+              <input
+                type='text'
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className='bg-transparent outline-none w-full px-2 py-1 text-lg'
+              />
+              <X
+                className='icon size-10'
+                onClick={(e) => {
+                  setIsSearching(false);
+                  e.stopPropagation();
+                  setInput('');
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <Search className='icon' />
+              <span>Search</span>
+            </>
+          )}
         </div>
         <MobileDock />
+      </div>
+      <div className='extra-small-device'>
+        <img
+          src='/images/header-image-xs-screen.png'
+          alt='Extra small screen device image'
+        />
+        <h3>Hey there! Is this a portfolio for ants? 🐜</h3>
+        <small>
+          My layout can’t breathe down here 😭 Hop on a larger phone, laptop, or
+          desktop to unlock the main character arc 🖥️✨
+        </small>
       </div>
     </section>
   );

@@ -6,6 +6,9 @@ import WindowWrapper from '@hoc/WindowWrapper';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import useWindowStore from '@store/window';
+import MobileHeader from '@components/MobileHeader';
+import { useEffect, useState } from 'react';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -13,6 +16,19 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const Resume = () => {
+  const { closeWindow } = useWindowStore();
+
+  const [pageWidth, setPageWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setPageWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       <div id='window-header'>
@@ -27,9 +43,22 @@ const Resume = () => {
           <Download className='icon' />
         </a>
       </div>
+
+      <MobileHeader closeWindow={closeWindow} name='Resume' type='resume' />
       <Document file='/files/resume.pdf'>
-        <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
+        <Page
+          pageNumber={1}
+          width={pageWidth <= 640 ? pageWidth : 640}
+          renderTextLayer={false}
+          renderAnnotationLayer={false}
+        />
       </Document>
+
+      <div className='footer-gallery'>
+        <img src='/mobile/fill-book.png' alt='Fill Book' />
+        <img src='/mobile/library.png' alt='Library' />
+        <img src='/mobile/audio-book.png' alt='Audio-book' />
+      </div>
     </>
   );
 };

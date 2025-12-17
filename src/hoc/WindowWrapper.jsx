@@ -57,14 +57,6 @@ const WindowWrapper = (Component, windowKey) => {
         };
       });
 
-      // const [instance] = Draggable.create(el, {
-      //   type: 'x,y',
-      //   onPress: () => focusWindow(windowKey),
-      //   disable: maximize,
-      //   allowEventDefault: true,
-      //   ignore: 'input, textarea, .search, .search *',
-      // });
-
       mm.add('(max-width: 639px)', () => {
         if (draggable) draggable.disable();
       });

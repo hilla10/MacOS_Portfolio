@@ -1,10 +1,13 @@
 import { WindowController } from '@components';
+import MobileHeader from '@components/MobileHeader';
 import { techStack } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
+import useWindowStore from '@store/window';
 import { Check, Flag } from 'lucide-react';
 import React from 'react';
 
 const Terminal = () => {
+  const { closeWindow } = useWindowStore();
   return (
     <>
       <div id='window-header'>
@@ -12,9 +15,15 @@ const Terminal = () => {
         <h2>Tech Stack</h2>
       </div>
 
+      <MobileHeader
+        closeWindow={closeWindow}
+        name='Tech Stack'
+        type='terminal'
+      />
+
       <div className='techstack'>
         <p>
-          <span className='font-bold '>@Hailemichael % </span>
+          <span className='font-bold'>@Hailemichael % </span>
           show tech stack
         </p>
 
@@ -53,6 +62,11 @@ const Terminal = () => {
             @Haila % github stats
           </p>
         </div>
+      </div>
+      <div className='footer-gallery'>
+        <img src='/mobile/check.png' alt='Check' />
+        <img src='/mobile/camera.png' alt='Camera' />
+        <img src='/mobile/pen.png' alt='Pen' />
       </div>
     </>
   );

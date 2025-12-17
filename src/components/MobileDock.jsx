@@ -5,6 +5,7 @@ import { useRef } from 'react';
 
 import useWindowStore from '@store/window';
 import { mobileDocksApp } from '@constants';
+import { toggleApp } from '@utils/toggleApp';
 
 const MobileDock = () => {
   const { openWindow, closeWindow, windows } = useWindowStore();
@@ -56,72 +57,31 @@ const MobileDock = () => {
     };
   }, []);
 
-  // const toggleApp = (app) => {
-  //   if (!app.canOpen) return;
-
-  //   const windowState = windows[app.id];
-
-  //   if (!windowState) {
-  //     console.error(`Window not found for app: ${app.id}`);
-  //     return;
-  //   }
-
-  //   if (windowState.isOpen) {
-  //     closeWindow(app.id);
-  //   } else {
-  //     openWindow(app.id);
-  //   }
-  // };
-
-  const toggleApp = (appId) => {
-    const app = mobileDocksApp.find((a) => a.id === appId);
-    if (!app?.canOpen) return;
-
-    const windowState = windows[appId];
-
-    if (!windowState) {
-      return;
-    }
-
-    if (windowState.isOpen) {
-      closeWindow(appId);
-    } else {
-      openWindow(appId);
-    }
-  };
-
   return (
     <section id='dock' ref={dockRef}>
       <div className='dock-container'>
-        {mobileDocksApp.map(({ id, name, icon, canOpen }) => {
-          const isAppOpen = windows[id]?.isOpen;
-          const isMinimize = windows[id]?.minimize;
-
-          return (
-            <div key={id ?? name} className='relative flex justify-center'>
-              <button
-                type='button'
-                className='dock-icon'
-                aria-label={name}
-                data-tooltip-id='dock-tooltip'
-                data-tooltip-content={name}
-                data-delay-show={150}
-                disabled={!canOpen}
-                onClick={() => toggleApp(id)}>
-                <img
-                  src={icon}
-                  alt={name}
-                  loading='lazy'
-                  className={canOpen ? '' : 'opacity-60'}
-                />{' '}
-              </button>
-
-              {(isAppOpen || isMinimize) && (
-                <span className='dock-active' aria-hidden='true' />
-              )}
-            </div>
-          );
-        })}
+        {mobileDocksApp.map(({ id, name, icon, canOpen }) => (
+          <div key={id ?? name} className='relative flex justify-center'>
+            <button
+              type='button'
+              className='dock-icon'
+              aria-label={name}
+              data-tooltip-id='dock-tooltip'
+              data-tooltip-content={name}
+              data-delay-show={150}
+              disabled={!canOpen}
+              onClick={() =>
+                toggleApp(id, mobileDocksApp, windows, openWindow, closeWindow)
+              }>
+              <img
+                src={icon}
+                alt={name}
+                loading='lazy'
+                className={canOpen ? '' : 'opacity-60'}
+              />{' '}
+            </button>
+          </div>
+        ))}
         <Tooltip id='dock-tooltip' place='top' className='tooltip' />
       </div>
     </section>

@@ -8,7 +8,7 @@ const Contact = () => {
   const { closeWindow } = useWindowStore();
   return (
     <>
-      <div id='window-header'>
+      <div id='window-header' >
         <WindowController target='contact' />
         <h2 className='dark:text-white'>Contact Me</h2>
       </div>

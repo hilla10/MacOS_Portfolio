@@ -16,9 +16,10 @@ import {
   Safari,
   Terminal,
   Text,
+  About,
+  Trash,
 } from '@windows';
 import Wallpaper from '@components/Wallpaper';
-import Trash from '@windows/Trash';
 
 const App = () => {
   const { toggleTheme, changeWallpaper, isClicked, closeDropdown } =
@@ -89,6 +90,7 @@ const App = () => {
       <Home />
       <Gallery />
       <Trash />
+      <About />
       {isClicked && <Wallpaper />}
     </main>
   );

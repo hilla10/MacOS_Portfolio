@@ -5,6 +5,7 @@ import { useRef } from 'react';
 
 import useWindowStore from '@store/window';
 import { dockApps } from '@constants';
+import { toggleApp } from '@utils/toggleApp';
 
 const Dock = () => {
   const { openWindow, closeWindow, windows } = useWindowStore();
@@ -56,23 +57,6 @@ const Dock = () => {
     };
   }, []);
 
-  const toggleApp = (app) => {
-    if (!app.canOpen) return;
-
-    const windowState = windows[app.id];
-
-    if (!windowState) {
-      console.error(`Window not found for app: ${app.id}`);
-      return;
-    }
-
-    if (windowState.isOpen) {
-      closeWindow(app.id);
-    } else {
-      openWindow(app.id);
-    }
-  };
-
   return (
     <section id='dock' ref={dockRef}>
       <div className='dock-container'>
@@ -90,7 +74,9 @@ const Dock = () => {
                 data-tooltip-content={name}
                 data-delay-show={150}
                 disabled={!canOpen}
-                onClick={() => toggleApp({ id, canOpen })}>
+                onClick={() =>
+                  toggleApp(id, dockApps, windows, openWindow, closeWindow)
+                }>
                 <img
                   src={icon}
                   alt='icon'

@@ -133,44 +133,52 @@ const dockApps = [
 
 const widget = [
   {
-    id: 1,
+    id: 'resume',
     name: 'resume',
     icon: '/mobile/resume.svg',
+    canOpen: true,
   },
   {
-    id: 2,
+    id: 'calendar',
     name: 'calendar',
     icon: '/mobile/calendar.svg',
+    canOpen: false,
   },
   {
-    id: 3,
+    id: 'mail',
     name: 'mail',
     icon: '/mobile/mail.svg',
+    canOpen: false,
   },
   {
-    id: 4,
+    id: 'clock',
     name: 'clock',
     icon: '/mobile/clock.svg',
+    canOpen: false,
   },
   {
-    id: 5,
+    id: 'message',
     name: 'message',
     icon: '/mobile/message.svg',
+    canOpen: false,
   },
   {
-    id: 6,
+    id: 'music',
     name: 'music',
     icon: '/mobile/music.svg',
+    canOpen: false,
   },
   {
-    id: 7,
+    id: 'terminal',
     name: 'setting',
     icon: '/mobile/setting.svg',
+    canOpen: true,
   },
   {
-    id: 8,
+    id: 'about',
     name: 'facetime',
     icon: '/mobile/facetime.svg',
+    canOpen: true,
   },
 ];
 const mobileDocksApp = [
@@ -232,7 +240,7 @@ const techStack = [
   },
   {
     category: 'Styling',
-    items: ['Tailwind CSS', 'Sass', 'CSS', 'Bootstrap'],
+    items: ['Tailwind', 'Sass', 'CSS', 'Bootstrap'],
   },
   {
     category: 'Backend',
@@ -902,6 +910,13 @@ const WINDOW_CONFIG = {
     data: null,
   },
   trash: {
+    isOpen: false,
+    zIndex: INITIAL_Z_INDEX,
+    maximize: false,
+    minimize: false,
+    data: null,
+  },
+  about: {
     isOpen: false,
     zIndex: INITIAL_Z_INDEX,
     maximize: false,
