@@ -49,6 +49,20 @@ body {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
+@utility file-content-grid {
+  @apply flex-1 p-8 max-sm:py-3 max-sm:px-2 dark:bg-[#1e1e1e] dark:text-white bg-white max-w-2xl relative max-sm:flex flex-wrap justify-center items-start gap-2.5 max-sm:max-w-full space-y-5;
+
+  li {
+    @apply absolute flex items-center flex-col gap-3 max-sm:static;
+    img {
+      @apply object-contain object-center max-sm:size-20 size-16 relative group-hover:scale-105;
+    }
+    p {
+      @apply text-sm text-center font-medium w-40 max-sm:w-26 max-sm:truncate;
+    }
+  }
+}
+
 @layer base {
   main {
     @apply w-dvw h-dvh overflow-hidden;
@@ -146,13 +160,11 @@ body {
         @apply flex-1 text-[16px] text-center font-roboto text-gray-400;
       }
     }
-
     .extra-small-device {
       @apply hidden flex-col items-center justify-center text-center px-2 py-4 bg-white/70 dark:bg-[#1e1e1e]/60 backdrop-blur-[80px] rounded-xl text-[#1e1e1e] dark:text-white border border-white/50 dark:border-white/10 select-none max-[360px]:flex w-full max-[260px]:p-1;
 
-      box-shadow: 0px 38px 90px 0px rgba(0, 0, 0, 0.251);
-      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.05);
-      box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 38px 90px 0px rgba(0, 0, 0, 0.251),
+        0px 0px 2px 0px rgba(0, 0, 0, 0.05), 0px 0px 1px 0px rgba(0, 0, 0, 0.6);
 
       img {
         @apply max-[260px]:size-6;
@@ -590,18 +602,7 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8 max-sm:py-3 max-sm:px-2 dark:bg-[#1e1e1e] dark:text-white bg-white  max-w-2xl relative max-sm:flex flex-wrap justify-center items-start gap-2.5 max-sm:max-w-full space-y-5;
-      li {
-        @apply absolute flex items-center flex-col gap-3 max-sm:static;
-
-        img {
-          @apply object-contain object-center max-sm:size-20 size-16 relative group-hover:scale-105;
-        }
-
-        p {
-          @apply text-sm text-center font-medium w-40 max-sm:w-26 max-sm:truncate;
-        }
-      }
+      @apply file-content-grid;
     }
 
     .no-match {
@@ -680,18 +681,7 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8 max-sm:py-3 max-sm:px-2 dark:bg-[#1e1e1e] dark:text-white bg-white  max-w-2xl relative max-sm:flex flex-wrap justify-center items-start gap-2.5 max-sm:max-w-full space-y-5;
-      li {
-        @apply absolute flex items-center flex-col gap-3 max-sm:static;
-
-        img {
-          @apply object-contain object-center max-sm:size-20 size-16 relative group-hover:scale-105;
-        }
-
-        p {
-          @apply text-sm text-center font-medium w-40 max-sm:w-26 max-sm:truncate;
-        }
-      }
+      @apply file-content-grid;
     }
   }
 
