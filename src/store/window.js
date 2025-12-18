@@ -35,12 +35,15 @@ const useWindowStore = create(
         if (windowKey === 'search' || windowKey === 'finder') {
           resetSearch();
         }
-      }),    focusWindow: (windowKey) =>
+      }),
+
+    focusWindow: (windowKey) =>
       set((state) => {
         const win = state.windows[windowKey];
         if (!win) return;
         win.zIndex = state.nextZIndex++;
       }),
+
     maximizeWindow: (windowKey) => {
       set((state) => {
         const win = state.windows[windowKey];
@@ -48,6 +51,7 @@ const useWindowStore = create(
         win.maximize = !win.maximize;
       });
     },
+
     minimizeWindow: (windowKey) => {
       set((state) => {
         const win = state.windows[windowKey];
