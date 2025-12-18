@@ -14,16 +14,15 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  /* background-attachment: scroll; fixed breaks on mobile */
 }
 
 /* Mobile (<= 640px) */
 @media (max-width: 640px) {
   html,
   body {
-    background-image: url('/mobile/wallpaper.png');
-
-    overflow-y: auto;
+    background-image: url('/mobile/wallpaper/wallpaper-light.png');
+    background-attachment: fixed;
+    width: 100%;
   }
 }
 
@@ -144,7 +143,7 @@ body {
         @apply flex gap-[18px] items-center justify-center flex-wrap;
 
         img {
-          @apply w-18 h-[79px];
+          @apply w-18 h-[79px] cursor-pointer hover:scale-105 transition-transform;
         }
       }
 
@@ -162,7 +161,6 @@ body {
     }
     .extra-small-device {
       @apply hidden flex-col items-center justify-center text-center px-2 py-4 bg-white/70 dark:bg-[#1e1e1e]/60 backdrop-blur-[80px] rounded-xl text-[#1e1e1e] dark:text-white border border-white/50 dark:border-white/10 select-none max-[360px]:flex w-full max-[260px]:p-1;
-
       box-shadow: 0px 38px 90px 0px rgba(0, 0, 0, 0.251),
         0px 0px 2px 0px rgba(0, 0, 0, 0.05), 0px 0px 1px 0px rgba(0, 0, 0, 0.6);
 
@@ -606,7 +604,18 @@ body {
     }
 
     .no-match {
-      @apply absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-26 flex flex-col items-center justify-center px-6 py-4 bg-white/70 dark:bg-[#1e1e1e]/60 backdrop-blur-md rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.12)] text-[#1e1e1e] dark:text-white border border-white/50 dark:border-white/10  select-none;
+      @apply absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center  dark:bg-[#1e1e1e]  text-[#1e1e1e] dark:text-white dark:border-white/10 mt-8 rounded-2xl ml-20
+      px-6 py-5 text-center backdrop-blur-md
+      border border-cyan-400/20 w-[50%] mx-auto shadow-[0_0_20px_rgba(0,234,255,0.15)] select-none max-sm:static max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-[70vw];
+
+      .title {
+        @apply text-[15px] font-semibold tracking-wide text-blue-400
+        drop-shadow-[0_0_14px_rgba(10,132,255,0.4)];
+      }
+
+      .subtitle {
+        @apply mt-1 text-[13px] text-white/70;
+      }
     }
 
     .footer {
@@ -622,7 +631,7 @@ body {
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:right-0 max-sm:h-full max-sm:rounded-none;
+    @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:right-0 max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto max-sm:scrollbar-hide;
 
     #window-controls {
       @apply max-sm:hidden;

@@ -26,10 +26,12 @@ const useWindowStore = create(
     closeWindow: (windowKey) =>
       set((state) => {
         const win = state.windows[windowKey];
+        const { resetSearch } = useLocationStore.getState();
         if (!win) return;
         win.isOpen = false;
         win.zIndex = INITIAL_Z_INDEX;
         win.data = null;
+        resetSearch();
       }),
     focusWindow: (windowKey) =>
       set((state) => {

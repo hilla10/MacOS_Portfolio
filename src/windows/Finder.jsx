@@ -4,9 +4,10 @@ import { locations } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
 import useLocationStore from '@store/location';
 import useWindowStore from '@store/window';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import FooterItem from '@components/FooterItem';
 import RenderList from '@components/RenderList';
+import NotFound from '@components/NotFound';
 
 const Finder = () => {
   const { closeWindow, openItem } = useWindowStore();
@@ -15,10 +16,12 @@ const Finder = () => {
     setActiveLocation,
     search,
     filtered,
-    resetSearch,
     isProjectFound,
+    handleChange,
+    input,
+    resetSearch,
   } = useLocationStore();
-  const [input, setInput] = useState('');
+  // const [input, setInput] = useState('');
   const [activateInput, setActivateInput] = useState(false);
   const [folder, setFolder] = useState('images');
 
@@ -30,12 +33,17 @@ const Finder = () => {
       : `images/${fileName}`;
   };
 
-  const filteredItems =
-    input.trim().length > 0
-      ? activeLocation.children.filter((item) =>
-          item.name.toLowerCase().includes(input.toLowerCase())
-        )
-      : activeLocation.children;
+  const filteredItems = useMemo(() => {
+    if (!activeLocation?.children) return [];
+
+    const query = input.trim().toLowerCase();
+
+    if (!query) return activeLocation.children;
+
+    return activeLocation.children.filter((item) =>
+      item.name.toLowerCase().includes(query)
+    );
+  }, [activeLocation, input]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,13 +72,13 @@ const Finder = () => {
             <Search className='icon' />
             <input
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => handleChange(e.target.value)}
               onKeyDown={(e) => {
                 search(e, input, activeLocation);
               }}
               type='text'
               placeholder='Search or enter name'
-              className='fle-2'
+              className='flex-2'
             />
           </div>
         )}
@@ -85,7 +93,6 @@ const Finder = () => {
               className='icon'
               onClick={() => {
                 setActivateInput(false);
-                setInput('');
                 resetSearch();
               }}
             />
@@ -101,7 +108,6 @@ const Finder = () => {
               src='/mobile/back.png'
               alt='go back'
               onClick={() => {
-                resetSearch();
                 isWorkRoot
                   ? closeWindow('finder')
                   : setActiveLocation(locations.work);
@@ -114,46 +120,40 @@ const Finder = () => {
               onClick={() => {
                 closeWindow('finder');
                 setActiveLocation(locations.work);
-                resetSearch();
-                setInput('');
               }}
             />
           </div>
           <div className='search'>
             <Search className='icon size-6.5' />
+
             <input
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => handleChange(e.target.value)}
               onKeyDown={(e) => search(e, input, activeLocation)}
               type='text'
               placeholder='Search'
-              className='fle-2'
+              className='flex-2'
             />
             <Mic className='icon size-6.5' />
           </div>
         </div>
         {/* end of  mobile device header */}
-
         <div className='sidebar'>
           <RenderList
             name='Favorites'
             items={Object.values(locations)}
             setActiveLocation={setActiveLocation}
             activeLocation={activeLocation}
-            setInput={setInput}
-            resetSearch={resetSearch}
           />
           <RenderList
             name='Work'
             items={locations.work.children}
             setActiveLocation={setActiveLocation}
             activeLocation={activeLocation}
-            setInput={setInput}
-            resetSearch={resetSearch}
           />
         </div>
         <ul className='content'>
-          {(filtered ? filtered.children : filteredItems)?.map((item) => {
+          {(filteredItems ? filteredItems : filtered.children)?.map((item) => {
             const icon = extractIcon(item);
             return (
               <li
@@ -166,11 +166,7 @@ const Finder = () => {
             );
           })}
         </ul>
-        {activateInput && !isProjectFound && filteredItems.length === 0 && (
-          <div className='no-match'>
-            <p className='text-[15px] font-medium'>No matching project found</p>
-          </div>
-        )}
+        {!isProjectFound && filteredItems.length === 0 && <NotFound />}
 
         <div className='footer'>
           <div>
@@ -180,8 +176,11 @@ const Finder = () => {
               isActive={isWorkRoot}
               onClick={() => {
                 setActiveLocation(locations.work);
-                resetSearch();
-                setInput('');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setActiveLocation(locations.work);
+                }
               }}
             />
 
@@ -191,8 +190,6 @@ const Finder = () => {
               isActive={isAboutMeRoot}
               onClick={() => {
                 setActiveLocation(locations.about);
-                resetSearch();
-                setInput('');
               }}
             />
           </div>

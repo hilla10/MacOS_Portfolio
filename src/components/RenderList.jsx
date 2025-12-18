@@ -1,13 +1,6 @@
 import clsx from 'clsx';
 const FALLBACK_IMAGE = '/images/image.png';
-const RenderList = ({
-  name,
-  items,
-  setActiveLocation,
-  activeLocation,
-  setInput,
-  resetSearch,
-}) => {
+const RenderList = ({ name, items, setActiveLocation, activeLocation }) => {
   return (
     <div>
       <h3>{name}</h3>
@@ -16,11 +9,7 @@ const RenderList = ({
         {items.map((item) => (
           <li
             key={item.id}
-            onClick={() => {
-              setActiveLocation(item);
-              setInput('');
-              resetSearch();
-            }}
+            onClick={() => setActiveLocation(item)}
             className={clsx(
               item.id === activeLocation?.id ? 'active' : 'not-active'
             )}>

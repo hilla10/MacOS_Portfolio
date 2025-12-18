@@ -7,15 +7,6 @@ import useWindowStore from '@store/window';
 const About = () => {
   const { closeWindow, openItem } = useWindowStore();
 
-  //   const openItem = (item) => {
-  //     if (item.kind === 'folder') return setActiveLocation(item);
-
-  //     if (!item.fileType) {
-  //       console.error('Item missing fileType:', item);
-  //       return;
-  //     }
-  //     openWindow(`${item.fileType}-${item.kind}`, item);
-  //   };
   return (
     <>
       <div id='window-header'>

@@ -6,7 +6,7 @@ const MobileHeader = ({ closeWindow, name, type }) => {
     <div
       className={`small-screen ${type === 'resume' ? 'justify-between' : ''}`}>
       <button
-        onClick={() => closeWindow(type)}
+        onClick={() =>  closeWindow(type) }
         className='back-button'
         aria-label='Go back'>
         <img src='/mobile/back.png' alt='' aria-hidden='true' />

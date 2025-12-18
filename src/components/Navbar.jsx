@@ -1,8 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import dayjs from 'dayjs';
-import { navIcons, navLinks, wallpapers } from '@constants';
+import { mobileWallpaper, navIcons, navLinks, wallpapers } from '@constants';
 import useWindowStore from '@store/window';
 import { Check, Moon, Sun } from 'lucide-react';
 import clsx from 'clsx';
+import { useCallback, useEffect, useState } from 'react';
+
+const FALLBACKS = {
+  desktop: {
+    dark: '/images/wallpaper-dark.png',
+    light: '/images/wallpaper-light.png',
+  },
+  mobile: {
+    dark: '/mobile/wallpaper/wallpaper-apple-dark.jpg',
+    light: '/mobile/wallpaper/wallpaper-light.png',
+  },
+};
 
 const Navbar = () => {
   const {
@@ -13,36 +26,59 @@ const Navbar = () => {
     isClicked,
     changeWallpaper,
   } = useWindowStore();
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
+  const [time, setTime] = useState(dayjs().format('h:mm:ss A'));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(dayjs().format('h:mm:ss A'));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const setThemeAndWallpaper = (newTheme) => {
-    // Always toggle the theme first so UI updates immediately
-    toggleTheme(newTheme);
-
-    const filtered = Array.isArray(wallpapers)
-      ? wallpapers.filter((w) => w.mode === newTheme)
-      : [];
-
-    if (filtered.length > 0) {
-      const random = filtered[Math.floor(Math.random() * filtered.length)];
-      // Apply a randomly selected wallpaper matching the theme
-      changeWallpaper(random.img);
-      return;
+    if (newTheme !== theme) {
+      toggleTheme(newTheme);
     }
 
-    // No matching wallpapers found — use a sensible fallback per theme
-    const FALLBACKS = {
-      light: '/images/wallpaper-light.png',
-      dark: '/images/wallpaper-dark.png',
-    };
-
-    const fallback = FALLBACKS[newTheme] || FALLBACKS.light;
-    console.warn(
-      `[Navbar] No wallpapers found for theme "${newTheme}" — applying fallback: ${fallback}`
-    );
-    changeWallpaper(fallback);
+    applyWallpaperForTheme(newTheme, isMobileScreen);
   };
 
+  const applyWallpaperForTheme = useCallback(
+    (currentTheme, isMobile) => {
+      const source = isMobile ? mobileWallpaper : wallpapers;
+      const filtered = source.filter((w) => w.mode === currentTheme);
+
+      if (filtered.length) {
+        const random = filtered[Math.floor(Math.random() * filtered.length)];
+        changeWallpaper(random.img);
+      } else {
+        changeWallpaper(
+          FALLBACKS[isMobile ? 'mobile' : 'desktop'][currentTheme]
+        );
+      }
+    },
+    [changeWallpaper]
+  );
+
   const isDark = theme === 'dark';
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 640;
+
+      setIsMobileScreen((prev) => {
+        if (prev !== isMobile) {
+          // screen type changed → update wallpaper
+          applyWallpaperForTheme(theme, isMobile);
+        }
+        return isMobile;
+      });
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [theme]);
 
   return (
     <nav>
@@ -103,9 +139,9 @@ const Navbar = () => {
           </li>
         </ul>
         <time className='max-sm:hidden'>
-          {dayjs().format('dd MMM D h:mm A')}
+          {dayjs().format('dd MMM D h:mm:ss A')}
         </time>
-        <time className='sm:hidden'>{dayjs().format(' h:mm A')}</time>
+        <time className='sm:hidden'>{time}</time>
         <button
           onClick={() => setThemeAndWallpaper(isDark ? 'light' : 'dark')}
           className='relative size-7 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl sm:hidden'

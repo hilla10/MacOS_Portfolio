@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { widget } from '@constants';
@@ -128,9 +128,10 @@ const Welcome = () => {
     };
   }, []);
 
-  const filteredWidgets = widget.filter((item) =>
-    item.name.toLowerCase().includes(input.toLowerCase())
-  );
+  const filteredWidgets = useMemo(() => {
+    const query = input.toLowerCase();
+    return widget.filter((item) => item.name.toLowerCase().includes(query));
+  }, [input]);
 
   return (
     <section id='welcome'>
@@ -147,17 +148,6 @@ const Welcome = () => {
 
       <div className='small-screen'>
         <div className='widget'>
-          {/* {filteredWidgets?.map(({ id, name, icon }) => (
-            <img
-              src={icon}
-              alt={name}
-              key={id}
-              onClick={() =>
-                toggleApp(id, filteredWidgets, windows, openWindow, closeWindow)
-              }
-            />
-          ))} */}
-
           {filteredWidgets?.map(({ id, name, icon }) => (
             <img
               src={icon}

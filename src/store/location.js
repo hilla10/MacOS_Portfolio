@@ -12,6 +12,8 @@ const useLocationStore = create(
     filtered: null,
     isProjectFound: true,
     shouldOpenItem: null,
+    input: '',
+
     setActiveLocation: (location) =>
       set((state) => {
         if (location == null) return;
@@ -21,59 +23,64 @@ const useLocationStore = create(
       set((state) => {
         state.activeLocation = DEFAULT_LOCATION;
       }),
+
     search: (e, input, activeLocation) => {
+      if (e.key !== 'Enter') return;
+      if (!input.trim()) return;
+
       set((state) => {
-        if (e.key !== 'Enter') return;
-
-        if (!input.trim()) return;
-
         state.searchInput = input;
 
-        if (!activeLocation?.children) {
-          state.isProjectFound = false;
-          return;
-        }
+        const children = activeLocation?.children || [];
+        const query = input.toLowerCase();
 
-        // Access the root "Work" folder children
-        const workItems = activeLocation.children;
-
-        // Case-insensitive partial match
-        const match = workItems.find((item) =>
-          item.name.toLowerCase().includes(input.toLowerCase())
+        // Find all matches in current folder
+        const matches = children.filter((item) =>
+          item.name.toLowerCase().includes(query)
         );
 
-        if (!match) {
+        if (matches.length === 0) {
           state.isProjectFound = false;
+          state.filtered = [];
           return;
         }
+
+        // Pick first match
+        const match = matches[0];
         state.filtered = match;
         state.isProjectFound = true;
 
         if (match.kind === 'folder') {
+          // Navigate into folder
           state.activeLocation = match;
-          return;
+          state.shouldOpenItem = null;
+        } else if (match.kind === 'file') {
+          // Open file immediately
+          state.shouldOpenItem = match;
+        } else {
+          state.shouldOpenItem = match; // fallback
         }
 
-        state.shouldOpenItem = match;
-      });
-
-      const currentState = useLocationStore.getState();
-      if (
-        currentState.shouldOpenItem &&
-        currentState.shouldOpenItem.kind !== 'folder'
-      ) {
-        const { openItem } = useWindowStore.getState();
-        openItem(currentState.shouldOpenItem);
-        set((state) => {
+        if (state.shouldOpenItem) {
+          const { openItem } = useWindowStore.getState();
+          openItem(state.shouldOpenItem);
           state.shouldOpenItem = null;
-        });
-      }
+        }
+      });
     },
+
+    handleChange: (value) =>
+      set((state) => {
+        state.input = value;
+        state.isProjectFound = false;
+      }),
+
     resetSearch: () => {
       set((state) => {
         state.searchInput = '';
         state.filtered = null;
         state.isProjectFound = true;
+        state.input = '';
       });
     },
   }))

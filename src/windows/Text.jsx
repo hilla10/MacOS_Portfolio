@@ -5,7 +5,7 @@ import React from 'react';
 
 const Text = () => {
   const { closeWindow } = useWindowStore();
-  const data = useWindowStore((s) => s.windows.txtfile.data);
+  const data = useWindowStore((s) => s.windows?.txtfile?.data ?? null);
 
   if (!data) return null;
 
@@ -16,9 +16,7 @@ const Text = () => {
       <div id='window-header'>
         <WindowController target='txtfile' />
         <button
-          onClick={() => {
-            closeWindow('txtfile');
-          }}
+          onClick={() => closeWindow('txtfile')}
           className='max-sm:block hidden'
           aria-label='go back'>
           <img src='/mobile/back.png' alt='' className='w-20.5 h-5.5' />{' '}
@@ -26,8 +24,7 @@ const Text = () => {
         <h2>{name}</h2>
       </div>
 
-      {/* Accessibility note: scrollbar is hidden only on small screens. Hiding scrollbars can reduce discoverability — consider visible scroll indicators or a user preference toggle instead. */}
-      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e] max-sm:overflow-y-auto max-sm:scrollbar-hide max-sm:h-screen max-sm:pb-25'>
+      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e]  max-sm:h-screen max-sm:mb-18 max-sm:pb-10'>
         {image || imageUrl ? (
           <div className='w-full'>
             <img
