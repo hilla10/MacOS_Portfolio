@@ -31,9 +31,11 @@ const useWindowStore = create(
         win.isOpen = false;
         win.zIndex = INITIAL_Z_INDEX;
         win.data = null;
-        resetSearch();
-      }),
-    focusWindow: (windowKey) =>
+        // Only reset search for search-related windows
+        if (windowKey === 'search' || windowKey === 'finder') {
+          resetSearch();
+        }
+      }),    focusWindow: (windowKey) =>
       set((state) => {
         const win = state.windows[windowKey];
         if (!win) return;

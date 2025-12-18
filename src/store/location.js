@@ -8,11 +8,13 @@ const DEFAULT_LOCATION = locations.work;
 const useLocationStore = create(
   immer((set) => ({
     activeLocation: DEFAULT_LOCATION,
-    searchInput: '',
+    // controlledInput: current value of the search input (controlled form state)
+    controlledInput: '',
+    // committedSearch: last committed search term (e.g., Enter pressed)
+    committedSearch: '',
     filtered: null,
     isProjectFound: true,
     shouldOpenItem: null,
-    input: '',
 
     setActiveLocation: (location) =>
       set((state) => {
@@ -28,8 +30,15 @@ const useLocationStore = create(
       if (e.key !== 'Enter') return;
       if (!input.trim()) return;
 
+      // We'll capture an item that should be opened here, but perform the
+      // side effect (openItem) *after* the set() updater completes to keep
+      // the updater pure and avoid race conditions.
+      let itemToOpen = null;
+
       set((state) => {
-        state.searchInput = input;
+        // Commit the search term and sync controlled input
+        state.committedSearch = input;
+        state.controlledInput = input;
 
         const children = activeLocation?.children || [];
         const query = input.toLowerCase();
@@ -41,10 +50,9 @@ const useLocationStore = create(
 
         if (matches.length === 0) {
           state.isProjectFound = false;
-          state.filtered = [];
+          state.filtered = null;
           return;
         }
-
         // Pick first match
         const match = matches[0];
         state.filtered = match;
@@ -55,32 +63,38 @@ const useLocationStore = create(
           state.activeLocation = match;
           state.shouldOpenItem = null;
         } else if (match.kind === 'file') {
-          // Open file immediately
+          // Mark file to open after updater
           state.shouldOpenItem = match;
         } else {
           state.shouldOpenItem = match; // fallback
         }
 
+        // Capture and clear shouldOpenItem inside the updater (no side effects)
         if (state.shouldOpenItem) {
-          const { openItem } = useWindowStore.getState();
-          openItem(state.shouldOpenItem);
+          itemToOpen = state.shouldOpenItem;
           state.shouldOpenItem = null;
         }
       });
+
+      // Perform the side effect outside the updater
+      if (itemToOpen) {
+        useWindowStore.getState().openItem(itemToOpen);
+      }
     },
 
     handleChange: (value) =>
       set((state) => {
-        state.input = value;
+        // Update controlled input only
+        state.controlledInput = value;
         state.isProjectFound = false;
       }),
 
     resetSearch: () => {
       set((state) => {
-        state.searchInput = '';
+        state.committedSearch = '';
         state.filtered = null;
         state.isProjectFound = true;
-        state.input = '';
+        state.controlledInput = '';
       });
     },
   }))

@@ -18,7 +18,7 @@ const Finder = () => {
     filtered,
     isProjectFound,
     handleChange,
-    input,
+    controlledInput,
     resetSearch,
   } = useLocationStore();
   // const [input, setInput] = useState('');
@@ -36,14 +36,14 @@ const Finder = () => {
   const filteredItems = useMemo(() => {
     if (!activeLocation?.children) return [];
 
-    const query = input.trim().toLowerCase();
+    const query = controlledInput.trim().toLowerCase();
 
     if (!query) return activeLocation.children;
 
     return activeLocation.children.filter((item) =>
       item.name.toLowerCase().includes(query)
     );
-  }, [activeLocation, input]);
+  }, [activeLocation, controlledInput]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -71,10 +71,10 @@ const Finder = () => {
           <div className='search'>
             <Search className='icon' />
             <input
-              value={input}
+              value={controlledInput}
               onChange={(e) => handleChange(e.target.value)}
               onKeyDown={(e) => {
-                search(e, input, activeLocation);
+                search(e, controlledInput, activeLocation);
               }}
               type='text'
               placeholder='Search or enter name'
@@ -127,9 +127,9 @@ const Finder = () => {
             <Search className='icon size-6.5' />
 
             <input
-              value={input}
+              value={controlledInput}
               onChange={(e) => handleChange(e.target.value)}
-              onKeyDown={(e) => search(e, input, activeLocation)}
+              onKeyDown={(e) => search(e, controlledInput, activeLocation)}
               type='text'
               placeholder='Search'
               className='flex-2'

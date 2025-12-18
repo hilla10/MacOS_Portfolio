@@ -1,6 +1,7 @@
 import { WindowController } from '@components';
 import WindowWrapper from '@hoc/WindowWrapper';
 import useWindowStore from '@store/window';
+import clsx from 'clsx';
 import React from 'react';
 
 const Text = () => {
@@ -23,8 +24,7 @@ const Text = () => {
         </button>{' '}
         <h2>{name}</h2>
       </div>
-
-      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e]  max-sm:h-screen max-sm:mb-18 max-sm:pb-10'>
+      <div className='p-5 space-y-6 bg-white dark:bg-[#1e1e1e]  max-sm:max-h-screen'>
         {image || imageUrl ? (
           <div className='w-full'>
             <img
@@ -42,7 +42,12 @@ const Text = () => {
         <div className=' space-y-4'>
           {Array.isArray(description) &&
             description.map((p, i) => (
-              <p key={i} className='text-base dark:text-white'>
+              <p
+                key={i}
+                className={clsx(
+                  'text-base dark:text-white',
+                  i === description.length - 1 ? 'pb-10' : ''
+                )}>
                 {p}
               </p>
             ))}

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import dayjs from 'dayjs';
 import { mobileWallpaper, navIcons, navLinks, wallpapers } from '@constants';
 import useWindowStore from '@store/window';
@@ -17,6 +16,19 @@ const FALLBACKS = {
   },
 };
 
+const TimeDisplay = ({ format, className }) => {
+  const [time, setTime] = useState(dayjs().format(format));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(dayjs().format(format));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [format]);
+
+  return <time className={className}>{time}</time>;
+};
+
 const Navbar = () => {
   const {
     openWindow,
@@ -27,14 +39,6 @@ const Navbar = () => {
     changeWallpaper,
   } = useWindowStore();
   const [isMobileScreen, setIsMobileScreen] = useState(false);
-  const [time, setTime] = useState(dayjs().format('h:mm:ss A'));
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(dayjs().format('h:mm:ss A'));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const setThemeAndWallpaper = (newTheme) => {
     if (newTheme !== theme) {
@@ -138,10 +142,8 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-        <time className='max-sm:hidden'>
-          {dayjs().format('dd MMM D h:mm:ss A')}
-        </time>
-        <time className='sm:hidden'>{time}</time>
+        <TimeDisplay format='dd MMM D h:mm:ss A' className='max-sm:hidden' />
+        <TimeDisplay format='h:mm:ss A' className='sm:hidden' />
         <button
           onClick={() => setThemeAndWallpaper(isDark ? 'light' : 'dark')}
           className='relative size-7 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl sm:hidden'
