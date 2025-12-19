@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { mobileWallpaper, navIcons, navLinks, wallpapers } from '@constants';
 import useWindowStore from '@store/window';
-import { Check, Moon, Sun } from 'lucide-react';
+import { Check, Moon, Search, Sun } from 'lucide-react';
 import clsx from 'clsx';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -44,8 +44,6 @@ const Navbar = () => {
     if (newTheme !== theme) {
       toggleTheme(newTheme);
     }
-
-    applyWallpaperForTheme(newTheme, isMobileScreen);
   };
 
   const applyWallpaperForTheme = useCallback(
@@ -68,21 +66,17 @@ const Navbar = () => {
   const isDark = theme === 'dark';
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-
-      setIsMobileScreen((prev) => {
-        if (prev !== isMobile) {
-          // screen type changed → update wallpaper
-          applyWallpaperForTheme(theme, isMobile);
-        }
-        return isMobile;
-      });
+      setIsMobileScreen(window.innerWidth < 640);
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [theme]);
+  }, []);
+
+  useEffect(() => {
+    applyWallpaperForTheme(theme, isMobileScreen);
+  }, [theme, isMobileScreen, applyWallpaperForTheme]);
 
   return (
     <nav>

@@ -147,58 +147,67 @@ const Welcome = () => {
       </h1>
 
       <div className='small-screen'>
+        {/* SCROLLABLE CONTENT */}
         <div className='widget'>
-          {filteredWidgets?.map(({ id, name, icon }) => (
-            <img
-              src={icon}
-              alt={name}
-              key={id}
-              role='button'
-              tabIndex={0}
-              onClick={() =>
-                toggleApp(id, widget, windows, openWindow, closeWindow)
-              }
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  toggleApp(id, widget, windows, openWindow, closeWindow);
+          <div>
+            {filteredWidgets?.map(({ id, name, icon }) => (
+              <img
+                key={id}
+                src={icon}
+                alt={name}
+                role='button'
+                tabIndex={0}
+                onClick={() =>
+                  toggleApp(id, widget, windows, openWindow, closeWindow)
                 }
-              }}
-              style={{ cursor: 'pointer' }}
-            />
-          ))}
-        </div>
-        <div
-          className={`search ${
-            isSearching ? 'p-2 w-86 mb-2 transition-all duration-300' : ''
-          } `}
-          onClick={() => setIsSearching(true)}>
-          {isSearching ? (
-            <>
-              <input
-                type='text'
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className='bg-transparent outline-none w-full px-2 py-1 text-lg'
-              />
-              <X
-                className='icon size-10'
-                onClick={(e) => {
-                  setIsSearching(false);
-                  e.stopPropagation();
-                  setInput('');
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleApp(id, widget, windows, openWindow, closeWindow);
+                  }
                 }}
               />
-            </>
-          ) : (
-            <>
-              <Search className='icon' />
-              <span>Search</span>
-            </>
-          )}
+            ))}
+          </div>
         </div>
-        <MobileDock />
+
+        {/* BOTTOM AREA */}
+        <div className='container'>
+          <div
+            className={`search ${isSearching ? 'active-search' : ''}`}
+            onClick={() => setIsSearching(true)}>
+            {isSearching ? (
+              <>
+                <input
+                  autoFocus
+                  placeholder='Search apps ...'
+                  onBlur={() => setIsSearching(false)}
+                  type='text'
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className='bg-transparent outline-none w-full px-2 py-0'
+                />
+                <X
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // stops blur
+                    setInput('');
+                    setIsSearching(false);
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <Search className='icon' />
+                <span>Search</span>
+              </>
+            )}
+          </div>
+
+          {/* 🔥 DOCK */}
+          <MobileDock />
+        </div>
       </div>
+
       <div className='extra-small-device'>
         <img
           src='/images/header-image-xs-screen.png'

@@ -9,8 +9,6 @@ export const toggleApp = (appId, dock, windows, openWindow, closeWindow) => {
     return;
   }
 
-  console.log(app);
-
   if (windowState.isOpen) {
     closeWindow(appId);
   } else {
