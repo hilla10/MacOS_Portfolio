@@ -181,19 +181,24 @@ const Welcome = () => {
                 <input
                   autoFocus
                   placeholder='Search apps ...'
-                  onBlur={() => setIsSearching(false)}
+                  onBlur={() => {
+                    setIsSearching(false);
+                    setInput('');
+                  }}
                   type='text'
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   className='bg-transparent outline-none w-full px-2 py-0'
                 />
-                <X
-                  onMouseDown={(e) => {
-                    e.preventDefault(); // stops blur
+                <button
+                  type='button'
+                  onClick={() => {
                     setInput('');
                     setIsSearching(false);
                   }}
-                />
+                  className='cursor-pointer bg-transparent border-none p-0'>
+                  <X className='size-6 mr-2' />
+                </button>
               </>
             ) : (
               <>

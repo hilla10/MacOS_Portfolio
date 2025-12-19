@@ -74,7 +74,7 @@ body:where(.dark, .dark *) {
 
 @layer base {
   main {
-    @apply w-dvw h-dvh max-sm:w-auto max-sm:h-auto overflow-hidden;
+    @apply w-dvw h-dvh overflow-hidden;
   }
 
   nav {
@@ -124,17 +124,6 @@ body:where(.dark, .dark *) {
       }
     }
   }
-
-  .search {
-    @apply flex items-center gap-3 w-2/3 bg-white/50 dark:bg-black/10  border dark:border-none border-gray-300 rounded-lg px-3 text-black/85 dark:text-white;
-
-    input {
-      @apply placeholder:text-black/85 dark:placeholder:text-white dark:text-white outline-none text-[16px] font-georama py-2 w-full;
-    }
-    .icon {
-      @apply hover:bg-transparent!;
-    }
-  }
 }
 
 @layer components {
@@ -151,7 +140,6 @@ body:where(.dark, .dark *) {
 
     .small-screen {
       @apply sm:hidden flex flex-col h-svh px-2 max-[360px]:hidden overflow-hidden pb-9;
-      /* [@media(max-height:680px)]:h-[80vh]  h-[88vh]*/
       .widget {
         @apply flex-1 overflow-y-auto w-full min-h-0 pt-6;
 
@@ -171,7 +159,7 @@ body:where(.dark, .dark *) {
           border border-white/20 ease-in-out;
           @apply px-4 py-2 w-32;
           &.active-search {
-            @apply w-[90%] px-2;
+            @apply w-[70%];
           }
 
           input {

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { mobileWallpaper, navIcons, navLinks, wallpapers } from '@constants';
 import useWindowStore from '@store/window';
-import { Check, Moon, Search, Sun } from 'lucide-react';
+import { Check, Moon, Sun } from 'lucide-react';
 import clsx from 'clsx';
 import { useCallback, useEffect, useState } from 'react';
 
