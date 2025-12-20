@@ -97,7 +97,7 @@ body:where(.dark, .dark *) {
     }
 
     .dropdown {
-      @apply absolute top-17 md:top-12 right-18 md:right-20 dark:md:right-24 dark:right-20 flex flex-col;
+      @apply absolute top-17 md:top-12 right-24 md:right-25 dark:md:right-27 dark:right-25 flex flex-col;
 
       .glass-arrow {
         @apply absolute
@@ -801,5 +801,9 @@ body:where(.dark, .dark *) {
         }
       }
     }
+  }
+
+  #wallpaper {
+    @apply absolute right-10 dark:md:right-10 top-38 md:top-33 w-50 flex flex-col gap-2 max-sm:hidden;
   }
 }

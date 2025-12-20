@@ -5,9 +5,7 @@ const Wallpaper = () => {
   const { theme, changeWallpaper, wallpaper } = useWindowStore();
 
   return (
-    <section
-      id='wallpaper'
-      className='absolute right-4 dark:right-6 dark:md:right-10  top-38 md:top-33 w-50 flex flex-col gap-2  '>
+    <section id='wallpaper'>
       {wallpapers.map(({ id, mode, img, isPhoneScreen }) => {
         return (
           !isPhoneScreen &&

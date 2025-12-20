@@ -85,7 +85,7 @@ const Navbar = () => {
           src={theme === 'dark' ? '/images/logo-light.svg' : '/images/logo.svg'}
           alt='Mac logo'
         />
-        <p className='font-bold max-sm:hidden'>Hailemichael's Portfolio</p>
+        <p className='font-bold max-sm:hidden '>Hailemichael's Portfolio</p>
         <p className='font-bold sm:hidden max-sm:text-sm'>Haila's Portfolio</p>
 
         <ul>
@@ -99,7 +99,7 @@ const Navbar = () => {
       <div className='max-sm:justify-end'>
         <ul>
           {navIcons.map(({ id, img, imgLight }) => (
-            <li key={id}>
+            <li key={id} className='cursor-pointer'>
               <img
                 src={isDark ? imgLight : img}
                 alt={`icon-${id}`}
@@ -136,7 +136,10 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-        <TimeDisplay format='dd MMM D h:mm:ss A' className='max-sm:hidden' />
+        <TimeDisplay
+          format='dd MMM D h:mm:ss A'
+          className='max-[790px]:hidden'
+        />
         <TimeDisplay format='h:mm:ss A' className='sm:hidden' />
         <button
           onClick={() => setThemeAndWallpaper(isDark ? 'light' : 'dark')}
