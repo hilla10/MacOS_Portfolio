@@ -804,6 +804,6 @@ body:where(.dark, .dark *) {
   }
 
   #wallpaper {
-    @apply absolute right-10 dark:md:right-10 top-38 md:top-33 w-50 flex flex-col gap-2 max-sm:hidden;
+    @apply absolute right-10 top-38 md:top-33 w-50 flex flex-col gap-2 max-sm:hidden;
   }
 }

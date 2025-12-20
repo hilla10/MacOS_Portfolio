@@ -85,9 +85,8 @@ const Navbar = () => {
           src={theme === 'dark' ? '/images/logo-light.svg' : '/images/logo.svg'}
           alt='Mac logo'
         />
-        <p className='font-bold max-sm:hidden '>Hailemichael's Portfolio</p>
+        <p className='font-bold max-sm:hidden'>Hailemichael's Portfolio</p>{' '}
         <p className='font-bold sm:hidden max-sm:text-sm'>Haila's Portfolio</p>
-
         <ul>
           {navLinks.map(({ id, name, type }) => (
             <li key={id} onClick={() => openWindow(type)}>
