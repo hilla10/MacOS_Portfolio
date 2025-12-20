@@ -155,20 +155,36 @@ body:where(.dark, .dark *) {
         @apply mt-auto flex flex-col items-center w-full shrink-0 z-0;
 
         .search {
-          @apply flex items-center justify-center bg-white/50 dark:bg-black/10 backdrop-blur-3xl rounded-[100px] font-medium cursor-pointer mb-3 transition-all duration-300 
-          border border-white/20 ease-in-out;
-          @apply px-4 py-2 w-32;
-          &.active-search {
-            @apply w-[70%];
-          }
+          @apply flex items-center mb-2.5 w-32 rounded-full
+          dark:bg-black/10 bg-white/60 backdrop-blur-3xl
+          shadow-2xl py-2 px-3 overflow-hidden whitespace-nowrap;
 
-          input {
-            @apply outline-none dark:text-white   dark:placeholder-white/50 w-full ml-2 text-base;
-          }
+          transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            background-color 0.3s ease;
+        }
 
-          .icon {
-            @apply shrink-0 transition-transform duration-300 bg-transparent cursor-pointer dark:text-white;
-          }
+        .search.active-search {
+          @apply w-[75vw] min-w-[75vw];
+        }
+
+        .search-layer {
+          @apply flex items-center w-full min-w-0 cursor-text;
+        }
+
+        .search-input {
+          @apply bg-transparent outline-none flex-1 min-w-0 px-1
+          text-[#00032e] dark:text-white
+          placeholder-[#00032e] dark:placeholder-white
+          font-semibold;
+        }
+
+        .icon {
+          @apply size-6 shrink-0 text-[#00032e] dark:text-white
+    cursor-pointer;
+        }
+
+        span {
+          @apply text-[#00032e] dark:text-white font-semibold;
         }
 
         #dock {
