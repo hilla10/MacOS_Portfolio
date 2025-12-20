@@ -135,10 +135,7 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-        <TimeDisplay
-          format='dd MMM D h:mm:ss A'
-          className='max-[790px]:hidden'
-        />
+        <TimeDisplay format='dd MMM D h:mm:ss A' className='max-sm:hidden' />
         <TimeDisplay format='h:mm:ss A' className='sm:hidden' />
         <button
           onClick={() => setThemeAndWallpaper(isDark ? 'light' : 'dark')}
