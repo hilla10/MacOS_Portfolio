@@ -175,15 +175,24 @@ const Welcome = () => {
         <div className='container'>
           <div
             className={`search ${isSearching ? 'active-search' : ''}`}
-            onClick={() => setIsSearching(true)}>
+            onClick={() => setIsSearching(true)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setIsSearching(true);
+              }
+            }}
+            role='button'
+            tabIndex={isSearching ? -1 : 0}
+            aria-label='Activate search'>
             <div className='search-layer flex items-center w-full'>
               {/* Icon stays put or moves slightly */}
               <Search
+                aria-hidden='true'
                 className={`icon transition-all duration-300  ${
                   isSearching ? 'scale-90 opacity-70' : 'scale-80'
                 }`}
               />
-
               {/* Text fades out while Input expands */}
               <div
                 className={`relative flex-1 flex items-center overflow-hidden ${
@@ -200,6 +209,7 @@ const Welcome = () => {
                 <input
                   autoFocus={isSearching}
                   placeholder='Search apps...'
+                  aria-label='Search applications'
                   type='text'
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -209,19 +219,20 @@ const Welcome = () => {
                   className={`bg-transparent outline-none transition-all duration-500 ${
                     isSearching ? 'w-full opacity-100 ml-2' : 'w-0 opacity-0'
                   }`}
-                />
+                />{' '}
               </div>
 
               {/* Close Button */}
               {isSearching && (
                 <button
+                  aria-label='Clear search and close'
                   onClick={(e) => {
                     e.stopPropagation();
                     setInput('');
                     setIsSearching(false);
                   }}
                   className='ml-auto transition-opacity duration-300'>
-                  <X className='icon mr-0!' />
+                  <X aria-hidden='true' className='icon' />
                 </button>
               )}
             </div>
