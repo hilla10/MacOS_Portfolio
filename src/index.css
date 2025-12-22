@@ -88,7 +88,7 @@ body:where(.dark, .dark *) {
       @apply flex items-center gap-5 max-sm:hidden;
 
       p {
-        @apply text-sm cursor-pointer hover:underline transition-all font-bold;
+        @apply text-sm cursor-pointer hover:underline transition-all font-bold max-[750px]:font-medium max-[750px]:text-[13px];
       }
     }
 
@@ -141,7 +141,7 @@ body:where(.dark, .dark *) {
     .small-screen {
       @apply sm:hidden flex flex-col h-svh px-2 max-[360px]:hidden overflow-hidden pb-9;
       .widget {
-        @apply flex-1 overflow-y-auto w-full min-h-0 pt-6;
+        @apply flex-1 overflow-hidden w-full min-h-0 pt-6;
 
         div {
           @apply flex gap-[18px] items-center justify-center flex-wrap pb-32;
@@ -175,11 +175,11 @@ body:where(.dark, .dark *) {
           @apply bg-transparent outline-none flex-1 min-w-0 px-1
           text-[#00032e] dark:text-white
           placeholder-[#00032e] dark:placeholder-white
-          font-semibold;
+          font-semibold transition-all duration-500;
         }
 
         .icon {
-          @apply size-6 shrink-0 text-[#00032e] dark:text-white
+          @apply size-7 shrink-0 text-[#00032e] dark:text-white
     cursor-pointer;
         }
 

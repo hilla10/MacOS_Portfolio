@@ -85,8 +85,10 @@ const Navbar = () => {
           src={theme === 'dark' ? '/images/logo-light.svg' : '/images/logo.svg'}
           alt='Mac logo'
         />
-        <p className='font-bold max-sm:hidden'>Hailemichael's Portfolio</p>{' '}
-        <p className='font-bold sm:hidden max-sm:text-sm'>Haila's Portfolio</p>
+        <p className='font-bold max-[794px]:hidden'>Hailemichael's Portfolio</p>{' '}
+        <p className='font-bold max-sm:text-sm min-[794px]:hidden max-[750px]:font-medium max-[750px]:text-[13px]'>
+          Haila's Portfolio
+        </p>
         <ul>
           {navLinks.map(({ id, name, type }) => (
             <li key={id} onClick={() => openWindow(type)}>
@@ -135,7 +137,10 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-        <TimeDisplay format='dd MMM D h:mm:ss A' className='max-sm:hidden' />
+        <TimeDisplay
+          format='dd MMM D h:mm:ss A'
+          className='max-sm:hidden max-[750px]:text-[12px]'
+        />
         <TimeDisplay format='h:mm:ss A' className='sm:hidden' />
         <button
           onClick={() => setThemeAndWallpaper(isDark ? 'light' : 'dark')}
