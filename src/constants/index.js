@@ -301,25 +301,26 @@ const mobileDocksApp = [
 const blogPosts = [
   {
     id: 1,
-    date: 'Sep 2, 2025',
+    date: 'Dec 22, 2025',
     title:
-      'TypeScript Explained: What It Is, Why It Matters, and How to Master It',
+      'Simplify React Imports: How to Replace Long Relative Paths with Clean Aliases',
     image: '/images/blog1.png',
-    link: 'https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it',
+    link: 'https://www.linkedin.com/posts/hailemichaelnegusse_tired-of-imports-in-react-me-activity-7408855659653328896-XT8P?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD_bdAMBv7b0HKV1WLu77GijdWgjtn8k2o4',
   },
   {
     id: 2,
-    date: 'Aug 28, 2025',
-    title: 'The Ultimate Guide to Mastering Three.js for 3D Development',
+    date: 'Dec 22, 2025',
+    title: 'Master Responsive Design in React with Tailwind CSS',
     image: '/images/blog2.png',
-    link: 'https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development',
+    link: 'https://www.linkedin.com/posts/hailemichaelnegusse_master-responsive-design-in-react-with-tailwind-activity-7408864871364112385-oz79?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD_bdAMBv7b0HKV1WLu77GijdWgjtn8k2o4',
   },
   {
     id: 3,
-    date: 'Aug 15, 2025',
-    title: 'The Ultimate Guide to Mastering GSAP Animations',
+    date: 'Dec 22, 2025',
+    title:
+      'Building a Full-Stack MERN App: From React Frontend to MongoDB Backend',
     image: '/images/blog3.png',
-    link: 'https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations',
+    link: 'https://www.linkedin.com/posts/hailemichaelnegusse_building-a-full-stack-mern-app-from-react-activity-7408867770148466688-5SfX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD_bdAMBv7b0HKV1WLu77GijdWgjtn8k2o4',
   },
 ];
 

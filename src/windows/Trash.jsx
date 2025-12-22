@@ -1,22 +1,10 @@
 import { WindowController } from '@components';
 import { locations } from '@constants';
 import WindowWrapper from '@hoc/WindowWrapper';
-import useLocationStore from '@store/location';
 import useWindowStore from '@store/window';
 
 const Trash = () => {
-  const { openWindow } = useWindowStore();
-  const { setActiveLocation } = useLocationStore();
-
-  const openItem = (item) => {
-    if (item.kind === 'folder') return setActiveLocation(item);
-
-    if (!item.fileType) {
-      console.error('Item missing fileType:', item);
-      return;
-    }
-    openWindow(`${item.fileType}-${item.kind}`, item);
-  };
+  const { openItem } = useWindowStore();
   return (
     <>
       <div id='window-header'>
