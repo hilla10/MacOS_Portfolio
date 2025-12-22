@@ -1,13 +1,20 @@
 import { widget } from '@constants';
 import useWindowStore from '@store/window';
 import { toggleApp } from '@utils/toggleApp';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MobileDock from './MobileDock';
 import { Search, X } from 'lucide-react';
 const SmallScreen = ({ filteredWidgets, input, setInput }) => {
   const { windows, openWindow, closeWindow } = useWindowStore();
   const [isSearching, setIsSearching] = useState(false);
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isSearching && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isSearching]);
   return (
     <div className='small-screen'>
       {/* SCROLLABLE CONTENT */}
@@ -64,13 +71,14 @@ const SmallScreen = ({ filteredWidgets, input, setInput }) => {
               <span
                 className={`ml-1 transition-all duration-300 absolute left-0 ${
                   isSearching
-                    ? 'opacity-0 -translate-x-2'
-                    : 'opacity-100 translate-x-0'
+                    ? 'opacity-0 -translate-x-2 z-0'
+                    : 'opacity-100 translate-x-0 z-10'
                 }`}>
                 Search
               </span>
               <input
-                autoFocus={isSearching}
+                onFocus={() => setIsSearching(true)}
+                ref={inputRef}
                 placeholder='Search apps...'
                 aria-label='Search applications'
                 type='text'
@@ -80,7 +88,9 @@ const SmallScreen = ({ filteredWidgets, input, setInput }) => {
                   if (input === '') setIsSearching(false);
                 }}
                 className={`search-input ${
-                  isSearching ? 'w-full opacity-100 ml-2' : 'w-0 opacity-0'
+                  isSearching
+                    ? 'w-full opacity-100 ml-2 z-10'
+                    : 'w-0 opacity-0 z-0'
                 }`}
               />{' '}
             </div>
