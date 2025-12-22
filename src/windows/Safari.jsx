@@ -65,7 +65,7 @@ const Safari = () => {
       <div className='blog'>
         <h2>My Developer Blog</h2>
 
-        <div className='space-y-8'>
+        <div className='space-y-8 max-sm:space-y-4'>
           {blogs?.map(({ id, date, title, image, link }) => (
             <div key={id} className='blog-post'>
               <div className='col-span-2 max-sm:col-span-3 '>

@@ -46,7 +46,7 @@ const Text = () => {
                 key={i}
                 className={clsx(
                   'text-base dark:text-white',
-                  i === description.length - 1 ? 'pb-10' : ''
+                  i === description.length - 1 ? 'pb-22' : ''
                 )}>
                 {p}
               </p>

@@ -59,10 +59,16 @@ body:where(.dark, .dark *) {
 }
 
 @utility file-content-grid {
-  @apply flex-1 p-8 max-sm:py-3 max-sm:px-2 dark:bg-[#1e1e1e] dark:text-white bg-white max-w-2xl relative max-sm:flex flex-wrap justify-center items-start gap-2.5 max-sm:max-w-full space-y-5;
+  @apply flex-1 p-8 max-sm:py-3 max-sm:px-2 dark:bg-[#1e1e1e] dark:text-white bg-white max-w-2xl relative max-sm:flex flex-wrap justify-center items-start gap-2.5 max-sm:max-w-full space-y-5 [@media(max-height:610px)]:space-y-0;
 
   li {
     @apply absolute flex items-center flex-col gap-3 max-sm:static;
+
+    @media screen and (max-height: 678px) {
+      gap: 0;
+      padding-bottom: 0;
+    }
+
     img {
       @apply object-contain object-center max-sm:size-20 size-16 relative group-hover:scale-105;
     }
@@ -265,11 +271,11 @@ body:where(.dark, .dark *) {
   }
 
   #window-header {
-    @apply flex items-center justify-between pr-4  rounded-t-lg bg-white  dark:bg-[#1e1e1e] dark:text-white border-b border-[#E6E6E6] dark:border-[#FFFFFF1A] select-none text-sm text-gray-400;
+    @apply flex items-center justify-between pr-4  rounded-t-lg bg-white  dark:bg-[#1e1e1e] dark:text-white border-b border-[#E6E6E6] dark:border-[#FFFFFF1A] max-sm:rounded-none select-none text-sm text-gray-400;
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none;
+    @apply w-4xl absolute top-40 left-2/12 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-11 max-sm:w-full max-sm:h-full max-sm:rounded-none  max-[360px]:hidden!;
 
     #window-header {
       @apply max-sm:hidden;
@@ -280,7 +286,7 @@ body:where(.dark, .dark *) {
     }
 
     .small-screen {
-      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 gap-5 bg-white;
+      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 pb-0 px-5 gap-5 bg-white;
       img {
         @apply w-20.5 h-5.5;
       }
@@ -312,14 +318,14 @@ body:where(.dark, .dark *) {
         }
 
         .content {
-          @apply col-span-10 space-y-3 max-sm:space-y-1 max-sm:col-span-9;
+          @apply col-span-10 space-y-3 max-sm:space-y-1 max-sm:col-span-9  max-[362px]:ml-4;
 
           p {
             @apply text-xs text-gray-500 dark:text-white;
           }
 
           h3 {
-            @apply font-semibold text-base text-gray-800 dark:text-white;
+            @apply font-semibold text-base  max-[362px]:text-[14px] text-gray-800 dark:text-white;
           }
 
           a {
@@ -330,11 +336,15 @@ body:where(.dark, .dark *) {
     }
 
     .footer-gallery {
-      @apply sm:hidden absolute bottom-5 border-t border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] pt-2 px-4;
+      @apply sm:hidden absolute bottom-14 border-t border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] pt-2 px-4;
 
       .search {
-        @apply px-0 pl-2 py-2 mb-4 font-medium grid grid-cols-6 w-full max-sm:border-none rounded-xl;
+        @apply px-0 pl-2 py-1.5 mb-4 font-medium grid grid-cols-6 w-full max-sm:border-none rounded-xl;
         box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.149);
+
+        @media screen and (max-height: 630px) {
+          display: none;
+        }
 
         input {
           @apply text-[16px] dark:text-[#FFFFFFB2] col-span-4 outline-none;
@@ -348,7 +358,7 @@ body:where(.dark, .dark *) {
   }
 
   #terminal {
-    @apply w-xl absolute top-32 left-1/12 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden  max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-screen max-sm:rounded-none max-sm:translate-y-0;
+    @apply w-xl absolute top-32 left-1/12 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden  max-sm:left-0 max-sm:top-11 max-sm:w-full max-sm:h-screen max-sm:rounded-none max-sm:translate-y-0  max-[360px]:hidden!;
 
     #window-header {
       @apply max-sm:hidden;
@@ -360,7 +370,7 @@ body:where(.dark, .dark *) {
     }
 
     .small-screen {
-      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 bg-white;
+      @apply flex items-center justify-start dark:bg-[#1e1e1e] w-full sm:hidden py-6 px-5 bg-white [@media(max-height:640px)]:pb-3;
       img {
         @apply w-20.5 h-5.5 max-w-none;
       }
@@ -374,7 +384,7 @@ body:where(.dark, .dark *) {
     }
 
     .techstack {
-      @apply text-sm font-roboto p-5 max-sm:px-3 dark:bg-[#1e1e1e];
+      @apply text-sm font-roboto p-5 max-sm:px-3 dark:bg-[#1e1e1e] [@media(max-height:640px)]:pt-0;
 
       p {
         @apply dark:text-white;
@@ -398,7 +408,7 @@ body:where(.dark, .dark *) {
           }
 
           ul {
-            @apply flex items-center gap-3;
+            @apply flex items-center gap-3 [@media(max-height:640px)]:gap-1;
           }
         }
       }
@@ -417,12 +427,12 @@ body:where(.dark, .dark *) {
     }
 
     .footer-gallery {
-      @apply sm:hidden absolute bottom-5 right-1 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 px-6;
+      @apply sm:hidden absolute bottom-14 right-1 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 px-6;
     }
   }
 
   #contact {
-    @apply max-w-2xl absolute top-60 left-5/12 dark:bg-[#1e1e1e] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto max-sm:scrollbar-hide;
+    @apply max-w-2xl absolute top-60 left-5/12 dark:bg-[#1e1e1e] bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-11 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto max-sm:scrollbar-hide  max-[360px]:hidden!;
     #window-header {
       @apply max-sm:hidden;
     }
@@ -451,7 +461,7 @@ body:where(.dark, .dark *) {
     }
 
     ul {
-      @apply flex items-center gap-3 max-sm:flex-wrap pt-2;
+      @apply flex items-center gap-3 max-sm:flex-wrap pt-2  [@media(max-height:640px)]:pb-15;
 
       li {
         @apply rounded-lg p-3 w-60 max-sm:w-85 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300;
@@ -468,7 +478,7 @@ body:where(.dark, .dark *) {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0;
+    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-11 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0  max-[360px]:hidden!;
 
     #window-header {
       @apply max-sm:hidden;
@@ -515,7 +525,7 @@ body:where(.dark, .dark *) {
     }
 
     .gallery {
-      @apply p-5 dark:bg-[#1e1e1e];
+      @apply p-5 dark:bg-[#1e1e1e] max-sm:h-screen;
 
       ul {
         @apply grid grid-cols-5 max-sm:grid-cols-2 max-sm:grid-rows-2 grid-rows-5 gap-2.5;
@@ -545,7 +555,7 @@ body:where(.dark, .dark *) {
     }
 
     .footer-gallery {
-      @apply sm:hidden absolute bottom-5 right-1 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 pr-2;
+      @apply sm:hidden absolute bottom-14 right-1 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 pr-2;
 
       img {
         &:nth-child(2) {
@@ -556,7 +566,7 @@ body:where(.dark, .dark *) {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0 max-sm:overflow-y-auto max-sm:scrollbar-hide;
+    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:left-0 max-sm:top-0 max-sm:w-full max-sm:h-full max-sm:rounded-none max-sm:translate-y-0 max-sm:overflow-y-auto max-sm:scrollbar-hide max-[360px]:hidden!;
 
     #window-controls {
       @apply bg-[#e3e6e8] dark:bg-[#222433];
@@ -580,24 +590,29 @@ body:where(.dark, .dark *) {
     }
 
     .footer-gallery {
-      @apply sm:hidden absolute mt-32 right-1 max-[396px]:right-2 max-[361px]:right-4 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] max-sm:dark:bg-white dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 pr-2;
+      @apply sm:hidden absolute mt-32 right-1 max-[396px]:right-2 max-[361px]:right-4 border-t-2 border-t-[#0000004D] w-full dark:bg-[#1e1e1e] max-sm:dark:bg-white dark:border-t-[#ffffff1c] flex items-center justify-between pt-2 pr-2 [@media(max-height:640px)]:mt-0;
     }
   }
 
   #finder {
-    @apply absolute w-3xl max-sm:left-0 max-sm:top-0 left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl max-sm:w-full max-sm:h-full max-sm:rounded-none;
+    @apply absolute w-3xl max-sm:left-0 max-sm:top-11 left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl max-sm:w-full max-sm:h-full max-sm:rounded-none max-[360px]:hidden!;
 
     #window-header {
       @apply max-sm:hidden;
     }
 
     .small-screen {
-      @apply w-full py-6 px-5 sm:hidden dark:bg-[#1e1e1e];
+      @apply w-full py-6 pb-3 px-5 sm:hidden dark:bg-[#1e1e1e];
+
+      @media screen and (max-height: 678px) {
+        padding-bottom: 0;
+      }
 
       div {
         @apply flex items-center justify-between mb-4;
         img {
           @apply w-21 h-7;
+
           &:first-child {
             @apply w-20.5 h-5.5;
           }
@@ -647,6 +662,10 @@ body:where(.dark, .dark *) {
 
     .content {
       @apply file-content-grid;
+
+      @media screen and (max-height: 678px) {
+        padding-top: 0;
+      }
     }
 
     .no-match {
@@ -670,7 +689,7 @@ body:where(.dark, .dark *) {
     }
 
     .footer {
-      @apply absolute bottom-5 border-t-2 border-t-[#0000004D] w-full sm:hidden dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c];
+      @apply absolute bottom-14 border-t-2 border-t-[#0000004D] w-full sm:hidden dark:bg-[#1e1e1e] dark:border-t-[#ffffff1c];
       div {
         @apply flex items-center justify-between mx-12 pt-2;
 
@@ -682,7 +701,7 @@ body:where(.dark, .dark *) {
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:right-0 max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto max-sm:scrollbar-hide;
+    @apply w-md absolute top-36 right-32 bg-white dark:bg-[#1e1e1e] shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-11 max-sm:right-0 max-sm:h-full max-sm:rounded-none max-sm:overflow-y-auto max-sm:scrollbar-hide max-[360px]:hidden!;
 
     #window-controls {
       @apply max-sm:hidden;
@@ -700,12 +719,12 @@ body:where(.dark, .dark *) {
     }
 
     h2 {
-      @apply font-bold text-sm text-center sm:w-full max-sm:text-[16px] max-sm:py-2;
+      @apply font-bold text-sm text-center sm:w-full max-sm:text-[16px] max-sm:py-2 max-[361px]:text-[12px];
     }
   }
 
   #imgfile {
-    @apply w-md absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:left-0 max-sm:h-screen max-sm:rounded-none max-sm:bg-[#1e1e1e];
+    @apply w-md absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-11 max-sm:left-0 max-sm:h-screen max-sm:rounded-none max-sm:bg-[#1e1e1e] max-[360px]:hidden!;
 
     #window-controls {
       @apply bg-[#e3e6e8] dark:bg-[#222433] max-sm:hidden;
@@ -724,7 +743,7 @@ body:where(.dark, .dark *) {
   }
 
   #about {
-    @apply w-md absolute top-40 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-0 max-sm:right-0 max-sm:h-full max-sm:rounded-none max-sm:bg-[#1e1e1e];
+    @apply w-md absolute top-40 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-sm:w-full max-sm:static max-sm:top-11 max-sm:right-0 max-sm:h-full max-sm:rounded-none max-sm:bg-[#1e1e1e] max-[360px]:hidden!;
 
     #window-header {
       @apply max-sm:hidden;
@@ -746,7 +765,7 @@ body:where(.dark, .dark *) {
   }
 
   #trash {
-    @apply w-lg absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-lg absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden max-[360px]:hidden!;
 
     #window-controls {
       @apply bg-[#e3e6e8] dark:bg-[#222433];
