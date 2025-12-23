@@ -1,9 +1,9 @@
 <!--
-	README for VantaPort
+	README for MacOs
 	Generated and added by assistant per user request.
 -->
 
-# VantaPort — Interactive macOS‑Style Portfolio 🚀
+# MacOs — Interactive macOS‑Style Portfolio 🚀
 
 ![Editor: VS Code](https://img.shields.io/badge/Editor-VS%20Code-0078d4?logo=visual-studio-code&logoColor=white)
 ![AI: GitHub Copilot](https://img.shields.io/badge/AI-GitHub%20Copilot-10B981?logo=github-copilot&logoColor=white)
@@ -14,7 +14,7 @@ A polished, macOS-inspired interactive portfolio built with modern web tooling �
 
 **About the Project** 🧩
 
-- VantaPort is a component-driven portfolio that mimics a lightweight desktop environment to present projects, media, and contact information in an immersive UI.
+- MacOs is a component-driven portfolio that mimics a lightweight desktop environment to present projects, media, and contact information in an immersive UI.
 - Built for clarity, performance, and ease of extension — ideal for developers who want a unique portfolio with familiar OS-like interactions.
 
 **Features** ✨
@@ -30,17 +30,19 @@ A polished, macOS-inspired interactive portfolio built with modern web tooling �
 
 - Frontend: React (JSX)
 - Bundler: Vite
-- Styling: Plain CSS (component-scoped)
-- Hosting: Vercel (Live Demo)
-- Dev Tools: Visual Studio Code, Git, GitHub, GitHub Copilot
+- Styling: Tailwind CSS
+- Animation: GSAP
+- State Management: Zustand + Immer
+- Hosting: Vercel
+- Dev Tools: VS Code, Git, GitHub
 
 **Installation & Setup (VS Code + GitHub Copilot)** 🛠️
 
 1. Clone
 
 ```bash
-git clone https://github.com/<your-username>/vantaport.git
-cd vantaport
+git clone https://github.com/hilla10/MacOS_Portfolio
+cd MacOS_Portfolio
 ```
 
 2. Install
@@ -54,18 +56,6 @@ npm install
 ```bash
 npm run dev
 ```
-
-4. Recommended VS Code extensions
-
-- ES7+ React/Redux snippets
-- Prettier
-- EditorConfig for VS Code
-- Live Server (optional)
-
-5. GitHub Copilot
-
-- Enable Copilot via the GitHub Copilot extension in VS Code (sign into GitHub when prompted).
-- Use inline suggestions and Copilot to scaffold new components or tests.
 
 **Usage** 💻
 
@@ -107,7 +97,7 @@ Visit the live site: https://portfolio-rho-gules-15.vercel.app/
 
 **Support** 💬
 
-For questions or support, contact: hillaman592@gmail.com — include "VantaPort" in the subject.
+For questions or support, contact: hillaman592@gmail.com — include "MacOs" in the subject.
 
 **License** 📄
 
