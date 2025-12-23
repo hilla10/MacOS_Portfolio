@@ -78,15 +78,31 @@ Visit the live site: https://portfolio-rho-gules-15.vercel.app/
 
 ## Screenshots 📸
 
-### Desktop
+## 📸 Screenshots
 
-![screenshot-desktop](/public/images/screenshot-desktop.png)
+Overview of the application's responsive design and theming capabilities.
 
-### Mobile
+### Desktop View
 
-![screenshot-mobile](/public/images/screenshot-mobile.png)
+The desktop interface features a spacious layout optimized for productivity and ease of navigation.
 
-Note: Replace the placeholder images in `/public/images` with production screenshots for the best presentation.
+|                                Light Mode                                |                               Dark Mode                                |
+| :----------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| ![Desktop Dashboard - Light Mode](./public/screenshot/desktop-light.png) | ![Desktop Dashboard - Dark Mode](./public/screenshot/desktop-dark.png) |
+|                    _Clean, high-contrast light theme_                    |                  _Immersive, eye-friendly dark theme_                  |
+
+### Mobile View
+
+The mobile interface is fully responsive, ensuring a seamless user experience on smaller screens.
+
+|                               Light Mode                               |                              Dark Mode                               |
+| :--------------------------------------------------------------------: | :------------------------------------------------------------------: |
+| ![Mobile Interface - Light Mode](./public/screenshot/mobile-light.png) | ![Mobile Interface - Dark Mode](./public/screenshot/mobile-dark.png) |
+|                   _Optimized mobile layout (Light)_                    |                   _Optimized mobile layout (Dark)_                   |
+
+---
+
+> **Note:** The images displayed above are located in the `/public/images` directory. As the project evolves, these screenshots can be updated by simply replacing the files with new captures while maintaining the existing filenames.
 
 ## 🗺️ Roadmap
 
@@ -97,6 +113,7 @@ Note: Replace the placeholder images in `/public/images` with production screens
 
 ## 🙏 Acknowledgements
 
+- JavaScript Mastery :https://www.youtube.com/@javascriptmastery
 - macOS UI paradigms for design inspiration
 - GSAP for smooth animations
 - Tailwind CSS for rapid, consistent styling
