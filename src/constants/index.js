@@ -867,7 +867,7 @@ const ABOUT_LOCATION = {
       subtitle: 'Meet the Developer Behind the Code',
       image: '/images/haila.png',
       description: [
-        '👋 Hey, I’m Hailemichael Negusse.',
+        '👋 Hey, I’m Hailemichael Nigusse.',
         'I’m a creative full-stack web developer with a strong foundation in software engineering. I specialize in turning complex ideas into fast, responsive, and user-friendly web applications that deliver real business value.',
 
         'Precision & Performance',
